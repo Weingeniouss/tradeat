@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc: ^9.1.1
   get: ^4.7.2
+  flutter_svg: ^2.0.10+1
+  mask_text_input_formatter: ^2.4.0
 
 dev_dependencies:
   flutter_test:
@@ -61,8 +63,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - asset/background/
+    - asset/logo/
+    - asset/icon/
+    - asset/loader/
+    - asset/font/Poppins/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -76,11 +82,26 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+     - family: Poppins
+       fonts:
+         - asset: asset/font/Poppins/Poppins-Black.ttf
+         - asset: asset/font/Poppins/Poppins-BlackItalic.ttf
+         - asset: asset/font/Poppins/Poppins-Bold.ttf
+         - asset: asset/font/Poppins/Poppins-BoldItalic.ttf
+         - asset: asset/font/Poppins/Poppins-ExtraBold.ttf
+         - asset: asset/font/Poppins/Poppins-ExtraLight.ttf
+         - asset: asset/font/Poppins/Poppins-ExtraLightItalic.ttf
+         - asset: asset/font/Poppins/Poppins-Italic.ttf
+         - asset: asset/font/Poppins/Poppins-Light.ttf
+         - asset: asset/font/Poppins/Poppins-LightItalic.ttf
+         - asset: asset/font/Poppins/Poppins-Medium.ttf
+         - asset: asset/font/Poppins/Poppins-MediumItalic.ttf
+         - asset: asset/font/Poppins/Poppins-Regular.ttf
+         - asset: asset/font/Poppins/Poppins-SemiBold.ttf
+         - asset: asset/font/Poppins/Poppins-SemiBoldItalic.ttf
+         - asset: asset/font/Poppins/Poppins-Thin.ttf
+         - asset: asset/font/Poppins/Poppins-ThinItalic.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
