@@ -5,4 +5,6 @@ class AppString{
   static const sending = "We're sending you a confirmation code now";
   static const accept = "I accept the Terms of use & Privacy policy";
   static const Continue = 'Continue';
+  static const Enter_num = 'Enter OTP Sent to';
+  static const ResendOTP = 'Resend OTP';
 }

@@ -7,7 +7,9 @@ class AppColor{
   static Color black_color = Color(0xff010101);
   static Color gray_color = Color(0xff979797);
   static Color textfield_color = Color(0xff1A1A1A);
+  static Color other_text_color = Color(0xff979797);
   static Color button_hide_color = Color(0xff303030);
+  static Color button_text_color = Color(0xff0A0A0A);
 
   // Linear Gradient
 
