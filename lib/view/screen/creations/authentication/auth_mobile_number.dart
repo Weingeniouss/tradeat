@@ -10,12 +10,13 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
-import '../../../../controller/userInterface/bloc/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
-import '../../../../controller/userInterface/event/auth_mobile_number_controller/auth_mobile_number__event.dart';
-import '../../../../controller/userInterface/state/auth_Mobile_number_stateController/auth_Mobile_number_stateController.dart';
+import '../../../../controller/userInterface/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
+import '../../../../controller/userInterface/event/authentication/auth_mobile_number_controller/auth_mobile_number__event.dart';
+import '../../../../controller/userInterface/state/authentication/auth_Mobile_number_stateController/auth_Mobile_number_stateController.dart';
 import '../../../../modal/country_code.dart';
 import '../../../utils/responsive.dart';
 import '../../../utils/widget/GradientCheckbox.dart';
+import '../../../utils/widget/horizontal_padding.dart';
 
 class AuthMobileNumber extends StatefulWidget {
   AuthMobileNumber({super.key});
@@ -68,8 +69,8 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width / 15),
+                  horizontalPadding(
+                   context: context,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

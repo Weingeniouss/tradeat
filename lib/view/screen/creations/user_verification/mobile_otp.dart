@@ -1,19 +1,19 @@
 // ignore_for_file: unnecessary_brace_in_string_interps, prefer_const_constructors
 
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:tradeat/controller/userInterface/event/mobile_otp_event/mobile_otp_event.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_1.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
-import '../../../../controller/userInterface/bloc/mobile_otp_bloc/mobile_otp_bloc.dart';
-import '../../../../controller/userInterface/state/mobile_otp_state/mobile_otp_state.dart';
+import '../../../../controller/userInterface/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
+import '../../../../controller/userInterface/event/user_verification/mobile_otp_event/mobile_otp_event.dart';
+import '../../../../controller/userInterface/state/user_verification/mobile_otp_state/mobile_otp_state.dart';
 import '../../../utils/responsive.dart';
+import '../../../utils/widget/horizontal_padding.dart';
 
 class MobileOtp extends StatefulWidget {
   final String number;
@@ -33,18 +33,14 @@ class _MobileOtpState extends State<MobileOtp> {
   void initState() {
     super.initState();
     context.read<MobileOtpBloc>().add(StartOtpTimer());
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FocusScope.of(context).requestFocus(focusNode);
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => FocusScope.of(context).requestFocus(focusNode));
   }
 
   @override
   void dispose() {
     super.dispose();
     context.read<MobileOtpBloc>().add(StartOtpTimer());
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FocusScope.of(context).requestFocus(focusNode);
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => FocusScope.of(context).requestFocus(focusNode));
   }
 
   @override
@@ -67,8 +63,8 @@ class _MobileOtpState extends State<MobileOtp> {
               height: aapbarsixe,
               decoration: BoxDecoration(color: AppColor.black_color),
               child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width / 15),
+                child: horizontalPadding(
+                  context: context,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -87,8 +83,8 @@ class _MobileOtpState extends State<MobileOtp> {
             width: size.width,
             height: size.height,
             decoration: BoxDecoration(color: AppColor.black_color),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width / 15),
+            child: horizontalPadding(
+              context: context,
               child: Column(
                 children: [
                   PinCodeTextField(
@@ -115,9 +111,10 @@ class _MobileOtpState extends State<MobileOtp> {
                     backgroundColor: AppColor.black_color,
                     enableActiveFill: true,
                     textStyle: TextStyle(color: AppColor.white_color, fontSize: 17),
-                    onChanged: (value) {if (value.length == 6) {
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => SetupProfile_frist()));
-                    }
+                    onChanged: (value) {
+                      if (value.length == 6) {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => SetupProfile_frist()));
+                      }
                     },
                   ),
                   SizedBox(height: size.height / 30),
@@ -127,13 +124,11 @@ class _MobileOtpState extends State<MobileOtp> {
                           style: TextStyle(
                             fontSize: responsivetext.value,
                             fontWeight: FontWeight.w700,
-                            foreground: Paint()
-                              ..shader = LinearGradient(
+                            foreground: Paint()..shader = LinearGradient(
                                 colors: [
                                   AppColor.yellow_color, AppColor.orange_color,
                                 ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
+                                begin: Alignment.topCenter, end: Alignment.bottomCenter,
                               ).createShader(Rect.fromLTWH(0.0, 0.0, size.width, size.height)),
                           ),
                         )

@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tradeat/controller/userInterface/bloc/logo_controller_bloc/logo_bloc.dart';
-import 'package:tradeat/controller/userInterface/event/logo_controller_evant/logo_event.dart';
 import 'package:tradeat/view/screen/splace/logo.dart';
-import 'controller/userInterface/bloc/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
-import 'controller/userInterface/bloc/mobile_otp_bloc/mobile_otp_bloc.dart';
+import 'controller/userInterface/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
+import 'controller/userInterface/bloc/splash/logo_controller_bloc/logo_bloc.dart';
+import 'controller/userInterface/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
+import 'controller/userInterface/event/splash/logo_controller_evant/logo_event.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           child: child!,
           breakpoints: [
             Breakpoint(start: 0, end: 320, name: 'Small Mobile'),
+            Breakpoint(start: 412, end: 732, name: 'Smalling Mobile'),
             Breakpoint(start: 321, end: 450, name: 'Mobile'),
             Breakpoint(start: 451, end: 600, name: 'Small Tablet'),
             Breakpoint(start: 601, end: 800, name: 'Tablet'),

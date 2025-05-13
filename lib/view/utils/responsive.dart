@@ -5,7 +5,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 
 //Font size
-
 ResponsiveValue<double> heading(BuildContext context) {
   final size = AppSize(context);
 
