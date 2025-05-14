@@ -1,10 +1,15 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
+import '../../../controller/userInterface/creations/state/authentication/setup_profile_1/setup_profile_1_state.dart';
 import '../app_color.dart';
 import '../app_string.dart';
 import '../responsive.dart';
 import 'app_size.dart';
 
-class Aboutinputfield extends StatefulWidget {
+class Aboutinputfield extends StatelessWidget {
   final TextEditingController abouting_controller;
   final void Function(String)? onChanged;
   final void Function()? onTap;
@@ -12,55 +17,42 @@ class Aboutinputfield extends StatefulWidget {
   const Aboutinputfield({super.key, required this.abouting_controller, this.onChanged, this.onTap});
 
   @override
-  State<Aboutinputfield> createState() => _AboutinputfieldState();
-}
-
-class _AboutinputfieldState extends State<Aboutinputfield> {
-  int charCount = 0; int maxLength = 100;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.abouting_controller.addListener(() {
-      setState(() {
-        charCount = widget.abouting_controller.text.length;
-      });
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final size = AppSize(context);
     final responsivetext = responsive_text(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(AppString.About_You, style: TextStyle(fontSize: responsivetext.value, color: AppColor.other_text_color)),
-        SizedBox(height: size.height / 80),
-        SizedBox(
-          height: size.height / 6.5,
-          child: Stack(
-            children: [
-              TextField(
-                onChanged: widget.onChanged,
-                onTap: widget.onTap,
-                cursorColor: AppColor.white_color,
-                controller: widget.abouting_controller,
-                maxLines: 100, maxLength: maxLength,
-                style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: size.width / 15, horizontal: size.width / 15),
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
-                  disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
-                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
-                  counterText: '',
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (BuildContext context, state) {
+        return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(AppString.About_You, style: TextStyle(fontSize: responsivetext.value, color: AppColor.other_text_color)),
+          SizedBox(height: size.height / 80),
+          SizedBox(
+            height: size.height / 6.5,
+            child: Stack(
+              children: [
+                TextField(
+                  onChanged: onChanged,
+                  onTap: onTap,
+                  cursorColor: AppColor.white_color,
+                  controller: abouting_controller,
+                  maxLines: 100, maxLength: state.maxLength,
+                  style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(vertical: size.width / 15, horizontal: size.width / 15),
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
+                    disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
+                    counterText: '',
+                  ),
                 ),
-              ),
-              Positioned(bottom: 8, right: 12, child: Text('$charCount/$maxLength', style: TextStyle(color: Colors.grey[400], fontSize: size.width / 35))),
-            ],
+                Positioned(bottom: 8, right: 12, child: Text('${state.charCount}/${state.maxLength}', style: TextStyle(color: Colors.grey[400], fontSize: size.width / 35))),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      );
+      },
     );
   }
 }

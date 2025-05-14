@@ -45,15 +45,36 @@ ResponsiveValue<double> responsive_text(BuildContext context) {
 }
 
 
-// double wp(BuildContext context, double percentage) {
-//   return MediaQuery.of(context).size.width * (percentage / 100);
-// }
-//
-// double hp(BuildContext context, double percentage) {
-//   return MediaQuery.of(context).size.height * (percentage / 100);
-// }
-// Container(
-//   width: wp(context, 50),  // 50% of screen width
-//   height: hp(context, 20), // 20% of screen height
-//   color: Colors.blue,
-// );
+double wp({required BuildContext context, required double percentage}) {
+  return MediaQuery.of(context).size.width * (percentage / 100);
+}
+
+double hp({required BuildContext context, required double percentage}) {
+  return MediaQuery.of(context).size.height * (percentage / 100);
+}
+
+
+class ResponsiveWidget extends StatelessWidget {
+  final Widget mobile;
+  final Widget? microMobile;
+  final Widget? tabletVertical;
+  final Widget? tabletHorizontal;
+  final Widget? desktop;
+
+  const ResponsiveWidget({super.key, required this.mobile, this.microMobile, this.tabletVertical, this.tabletHorizontal, this.desktop,});
+
+  static bool isMicroMobile(BuildContext context) => MediaQuery.of(context).size.width >= 320;
+  static bool isMobile(BuildContext context) => MediaQuery.of(context).size.width > 420 && MediaQuery.of(context).size.width < 768;
+  static bool isTabletVertical(BuildContext context) => MediaQuery.of(context).size.width >= 768 && MediaQuery.of(context).size.width < 1024;
+  static bool isTabletHorizontal(BuildContext context) => MediaQuery.of(context).size.width >= 1024 && MediaQuery.of(context).size.width < 1440;
+  static bool isDesktop(BuildContext context) => MediaQuery.of(context).size.width >= 1440;
+
+  @override
+  Widget build(BuildContext context) {
+    if (isDesktop(context) && desktop != null) {return desktop!;}
+    else if (isTabletHorizontal(context) && tabletHorizontal != null) {return tabletHorizontal!;}
+    else if (isTabletVertical(context) && tabletVertical != null) {return tabletVertical!;}
+    else if (isMicroMobile(context) && microMobile != null) {return microMobile!;}
+    else {return mobile;}
+  }
+}

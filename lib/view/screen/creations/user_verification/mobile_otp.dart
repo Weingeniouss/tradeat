@@ -9,9 +9,9 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
-import '../../../../controller/userInterface/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
-import '../../../../controller/userInterface/event/user_verification/mobile_otp_event/mobile_otp_event.dart';
-import '../../../../controller/userInterface/state/user_verification/mobile_otp_state/mobile_otp_state.dart';
+import '../../../../controller/userInterface/creations/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
+import '../../../../controller/userInterface/creations/event/user_verification/mobile_otp_event/mobile_otp_event.dart';
+import '../../../../controller/userInterface/creations/state/user_verification/mobile_otp_state/mobile_otp_state.dart';
 import '../../../utils/responsive.dart';
 import '../../../utils/widget/horizontal_padding.dart';
 

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 import '../app_color.dart';
 import '../app_icon.dart';
 import '../app_string.dart';
@@ -69,35 +68,3 @@ PreferredSizeWidget authenticationAppBar({required BuildContext context,required
     ),
   );
 }
-
-
-// Stack(
-                  //   alignment: Alignment.center,
-                  //   children: [
-                  //     SizedBox(
-                  //       width: 70,
-                  //       height: 70,
-                  //       child: SimpleCircularProgressBar(
-                  //         progressColors: [
-                  //           AppColor.yellow_color,
-                  //           AppColor.orange_color
-                  //         ],
-                  //         backColor: AppColor.gray_color,
-                  //         progressStrokeWidth: 7,
-                  //         backStrokeWidth: 7,
-                  //         mergeMode: true,
-                  //         animationDuration: 3,
-                  //         valueNotifier: progressNotifier,
-                  //       ),
-                  //     ),
-                  //     ValueListenableBuilder<double>(
-                  //       valueListenable: progressNotifier,
-                  //       builder: (context, value, _) {
-                  //         return Text(
-                  //           "${value.toInt()}%",
-                  //           style: TextStyle(fontSize: responsivetext.value, fontWeight: FontWeight.w700, color: AppColor.white_color),
-                  //         );
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),

@@ -3,11 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tradeat/view/screen/splace/logo.dart';
-import 'controller/userInterface/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
-import 'controller/userInterface/bloc/splash/logo_controller_bloc/logo_bloc.dart';
-import 'controller/userInterface/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
-import 'controller/userInterface/event/splash/logo_controller_evant/logo_event.dart';
+import 'package:tradeat/view/screen/creations/authentication/setup_profile_1.dart';
+import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
+import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
+import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
+import 'controller/userInterface/creations/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
+import 'controller/userInterface/creations/event/splash/logo_controller_evant/logo_event.dart';
 
 
 void main() {
@@ -21,6 +22,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+
+        //
+        //**************************** User Interface *********************
+        //
+
         // Login page
         BlocProvider(create: (BuildContext context) => SplashBloc()..add(SplashStarted())),
 
@@ -28,7 +34,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => AuthMobileNumberBloc()),
 
         // Mobile Otp page
-        BlocProvider(create: (BuildContext context) => MobileOtpBloc())
+        BlocProvider(create: (BuildContext context) => MobileOtpBloc()),
+
+        //setup profile one
+        BlocProvider(create: (BuildContext context) => ProfileBloc()),
+
       ],
       child: MaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -46,7 +56,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins'),
         debugShowCheckedModeBanner: false,
-        home: Logo(),
+        home: SetupProfile_frist(),
       ),
     );
   }

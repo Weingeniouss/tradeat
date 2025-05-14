@@ -7,8 +7,8 @@ import 'package:tradeat/view/screen/creations/authentication/auth_mobile_number.
 import 'package:tradeat/view/utils/app_gif.dart';
 import 'package:tradeat/view/utils/app_image.dart';
 import 'package:tradeat/view/utils/app_logo.dart';
-import '../../../controller/userInterface/bloc/splash/logo_controller_bloc/logo_bloc.dart';
-import '../../../controller/userInterface/state/splash/logo_controller_state/logo_state.dart';
+import '../../../controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
+import '../../../controller/userInterface/creations/state/splash/logo_controller_state/logo_state.dart';
 import '../../utils/widget/app_size.dart';
 
 class Logo extends StatelessWidget {
