@@ -6,4 +6,6 @@ class AppIcon{
   static const left = 'asset/icon/left.svg';
   static const circular = 'asset/icon/circular.svg';
   static const select_profile = 'asset/icon/select_profile.svg';
+  static const cancel = 'asset/icon/cancel.svg';
+  static const chake = "asset/icon/chake.svg";
 }

@@ -79,7 +79,7 @@ Widget inputfield({void Function(String)? onChanged, void Function()? onTap, req
           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(size.width / 30), borderSide: BorderSide(color: AppColor.textfield_color_2)),
         ),
       ),
-      SizedBox(height: size.height / 50),
+      SizedBox(height: size.height / 35),
     ],
   );
 }

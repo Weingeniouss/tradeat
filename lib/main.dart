@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tradeat/view/screen/creations/authentication/setup_profile_1.dart';
+import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
+import 'package:tradeat/view/utils/app_color.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
@@ -54,9 +55,9 @@ class MyApp extends StatelessWidget {
             Breakpoint(start: 1201, end: double.infinity, name: 'XL'),
           ],
         ),
-        theme: ThemeData(fontFamily: 'Poppins'),
+        theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: SetupProfile_frist(),
+        home: SetupProfile_scecond(),
       ),
     );
   }

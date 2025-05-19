@@ -186,13 +186,13 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                                   child: Text(
                                     AppString.Continue,
                                     style: TextStyle(
-                                      fontSize: responsivetext.value,
+                                      fontSize: size.width / 26,
                                       color: (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
                                           ? AppColor.button_text_color
                                           : AppColor.gray_color,
                                       fontWeight: (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
                                               ? FontWeight.w700
-                                              : FontWeight.w400,
+                                              : FontWeight.w700,
                                     ),
                                   ),
                                 ),

@@ -1,10 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
-class AppString{
+class AppString {
   //Button
   static const Continue = 'Continue';
   static const Save = 'Save';
-
 
   //Auth_mobile_number
   static const Entermobile_number = 'Enter your phone number';
@@ -24,4 +23,15 @@ class AppString{
   static const Email = 'Email Address';
   static const hint_Email = 'Enater Email Address';
   static const About_You = 'About You';
- }
+
+  //Setup Profile Second
+  static const Select_Country = 'Select Country';
+  static const Select_State = 'Select State';
+  static const Select_city = 'Select City';
+  static const Search = 'Search';
+  static const Country = 'Country';
+  static const State = 'State';
+  static const City = 'City';
+  static const Address_1 = 'Address 1';
+  static const Address_2 = 'Address 2';
+}
