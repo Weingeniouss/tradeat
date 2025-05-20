@@ -46,7 +46,8 @@ dependencies:
   simple_circular_progress_bar:
   percent_indicator:
   image_picker:
-  dropdown_button2: ^2.3.9
+  dropdown_button2:
+  equatable:
 
 dev_dependencies:
   flutter_test:

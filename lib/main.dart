@@ -7,9 +7,11 @@ import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dar
 import 'package:tradeat/view/utils/app_color.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
+import 'controller/userInterface/creations/bloc/authentication/setup_profile_2/setup_profile_2.dart';
 import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
 import 'controller/userInterface/creations/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
 import 'controller/userInterface/creations/event/splash/logo_controller_evant/logo_event.dart';
+import 'modal/country_state_city.dart';
 
 
 void main() {
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
 
         //setup profile one
         BlocProvider(create: (BuildContext context) => ProfileBloc()),
+        
+        //setup profile two
+        BlocProvider(create: (BuildContext context) => AddressBloc(select_address)),
 
       ],
       child: MaterialApp(
