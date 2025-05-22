@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
+import 'package:tradeat/view/screen/creations/authentication/setup_profile_3.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: SetupProfile_scecond(),
+        home: SetupProfile_thard(),
       ),
     );
   }

@@ -7,7 +7,7 @@ import '../app_string.dart';
 import '../responsive.dart';
 import 'app_size.dart';
 
-Widget Button({required BuildContext context, void Function()? onTap, bool? buttoncondition}) {
+Widget Button({required BuildContext context, void Function()? onTap, bool? buttoncondition, String? buttonname}) {
   final size = AppSize(context);
   final responsivetext = responsive_text(context);
   return GestureDetector(
@@ -22,7 +22,7 @@ Widget Button({required BuildContext context, void Function()? onTap, bool? butt
       ),
       child: Center(
         child: Text(
-          AppString.Save,
+          buttonname ?? AppString.Save,
           style: TextStyle(
             color: (buttoncondition == true)
                 ? AppColor.button_text_color

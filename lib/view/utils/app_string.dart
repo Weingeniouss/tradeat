@@ -4,6 +4,10 @@ class AppString {
   //Button
   static const Continue = 'Continue';
   static const Save = 'Save';
+  static const Verify = 'Verify';
+
+  //Dialog
+  static const Please_Wait = 'Please Wait...';
 
   //Auth_mobile_number
   static const Entermobile_number = 'Enter your phone number';
@@ -34,4 +38,20 @@ class AppString {
   static const City = 'City';
   static const Address_1 = 'Address 1';
   static const Address_2 = 'Address 2';
+
+  //Setup Profile Second
+  static const Pan = 'Pan Card Verification';
+  static const Aadhar = 'Aadhar Card Verification';
+  static const Bank_Details = 'Bank Details';
+  static const hintAccount ='Enter Account Number';
+  static const Pan_Card_number =  'Pan Card Number';
+  static const OTP = 'OTP';
+  static const Account_Number = 'Account Number';
+  static const Account_Holder_Name = 'Account Holder Name';
+  static const hintAccount_Holder_Name = 'Enter Account Holder Name';
+  static const IFSC_Code = 'IFSC Code';
+  static const hintIFSC_Code = 'Enter IFSC Code';
+  static const hint_OTP = 'Enter The OTP';
+  static const hint_Pan_Card_number = 'Enter Pan Card Number';
+  static const hint_Aadhar_Card_number = 'Enter Aadhar Card Number';
 }

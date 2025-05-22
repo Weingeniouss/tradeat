@@ -57,7 +57,7 @@ class Aboutinputfield extends StatelessWidget {
   }
 }
 
-Widget inputfield({void Function(String)? onChanged, void Function()? onTap, required BuildContext context, required String hintText, required String text, required TextEditingController controller}) {
+Widget inputfield({Widget? suffixIcon, int? maxLength, TextInputType? keyboardType, void Function(String)? onChanged, void Function()? onTap, required BuildContext context, required String hintText, required String text, required TextEditingController controller}) {
   final size = AppSize(context);
   final responsivetext = responsive_text(context);
   return Column(
@@ -66,12 +66,19 @@ Widget inputfield({void Function(String)? onChanged, void Function()? onTap, req
       Text(text, style: TextStyle(color: AppColor.other_text_color, fontSize: responsivetext.value)),
       SizedBox(height: size.height / 80),
       TextField(
+        maxLength: maxLength,
+        keyboardType: keyboardType,
         onChanged: onChanged,
         onTap: onTap,
         cursorColor: AppColor.white_color,
         controller: controller,
         style: TextStyle(fontSize: responsivetext.value, color: AppColor.white_color),
         decoration: InputDecoration(
+          suffixIcon: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: suffixIcon,
+          ),
+          counterText: '',
           hintText: hintText,
           hintStyle: TextStyle(color: AppColor.gray_color, fontSize: responsivetext.value),
           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(size.width / 30), borderSide: BorderSide(color: AppColor.textfield_color_2)),

@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tradeat/view/screen/creations/authentication/setup_profile_3.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
-import 'package:tradeat/view/utils/responsive.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
 import '../../../../controller/userInterface/creations/bloc/authentication/setup_profile_2/setup_profile_2.dart';
@@ -58,7 +58,6 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
   @override
   Widget build(BuildContext context) {
     final size = AppSize(context);
-    responsive_text(context);
     return BlocBuilder<AddressBloc, AddressState>(
       builder: (context, state) {
         if (addressOneController.text != state.addressOne) {
@@ -284,7 +283,9 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
 
                                Button(
                                  onTap: () {
-                                   if (state.countryProgressUpdated && state.stateProgressUpdated && state.cityProgressUpdated && state.addressOneUpdated && state.addressTwoUpdated) {}
+                                   if (state.countryProgressUpdated && state.stateProgressUpdated && state.cityProgressUpdated && state.addressOneUpdated && state.addressTwoUpdated) {
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => SetupProfile_thard()));
+                                   }
                                  },
                                  context: context,
                                  buttoncondition: state.countryProgressUpdated && state.stateProgressUpdated && state.cityProgressUpdated && state.addressOneUpdated && state.addressTwoUpdated,
