@@ -48,6 +48,8 @@ dependencies:
   image_picker:
   dropdown_button2:
   equatable:
+  carousel_slider:
+  smooth_page_indicator: ^1.2.1
 
 dev_dependencies:
   flutter_test:

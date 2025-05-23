@@ -8,10 +8,12 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_2/setup_profile_2.dart';
+import 'controller/userInterface/creations/bloc/create_plan/create_plan_bloc.dart';
 import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
 import 'controller/userInterface/creations/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
 import 'controller/userInterface/creations/event/splash/logo_controller_evant/logo_event.dart';
 import 'modal/country_state_city.dart';
+import 'view/screen/creations/create_plan/pricing_plan.dart';
 
 
 void main() {
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         // phone Number page
         BlocProvider(create: (BuildContext context) => AuthMobileNumberBloc()),
 
-        // Mobile Otp page
+        // mobile Otp page
         BlocProvider(create: (BuildContext context) => MobileOtpBloc()),
 
         //setup profile one
@@ -44,6 +46,9 @@ class MyApp extends StatelessWidget {
         
         //setup profile two
         BlocProvider(create: (BuildContext context) => AddressBloc(select_address)),
+
+        //pricing plan
+        BlocProvider(create: (_) => PricingBloc(), child: PricingPlan()),
 
       ],
       child: MaterialApp(

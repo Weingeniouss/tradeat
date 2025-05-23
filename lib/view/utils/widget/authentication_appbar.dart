@@ -68,3 +68,45 @@ PreferredSizeWidget authenticationAppBar({required BuildContext context,required
     ),
   );
 }
+
+PreferredSizeWidget authenticationprice({required BuildContext context}) {
+  final size = AppSize(context);
+  double appbarsize =  size.height / 4;
+  final headingSize = heading(context);
+  final subheadingSize = subheading(context);
+  final responsivetext = responsive_text(context);
+
+  return PreferredSize(
+    preferredSize: Size.fromHeight(appbarsize),
+    child: Container(
+      height: appbarsize, width: size.width,
+      decoration: BoxDecoration(color: AppColor.black_color),
+      child: SafeArea(
+        child: horizontalPadding(
+          context: context,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: size.height / 80),
+              GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
+              SizedBox(height: size.height / 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(AppString.pricing_Plan, style: TextStyle(color: AppColor.white_color, fontSize: headingSize.value)),
+                      SizedBox(height: size.height / 50),
+                      SizedBox(width: size.width / 1.4 ,child: Text(AppString.pricing_Plan_sub_hed, style: TextStyle(color: AppColor.gray_color, fontSize: subheadingSize.value))),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}

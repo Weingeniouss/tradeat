@@ -14,4 +14,5 @@ class AppIcon{
   static const pancard_true = 'asset/icon/pancard_true.svg';
   static const Suessess = 'asset/icon/chexktrue.svg';
   static const banck_true = 'asset/icon/bank_true.svg';
+  static const price = 'asset/icon/price.svg';
 }

@@ -5,6 +5,8 @@ class AppString {
   static const Continue = 'Continue';
   static const Save = 'Save';
   static const Verify = 'Verify';
+  static const Next = 'Next';
+  static const Subscribe = 'Subscribe';
 
   //Dialog
   static const Please_Wait = 'Please Wait...';
@@ -54,4 +56,19 @@ class AppString {
   static const hint_OTP = 'Enter The OTP';
   static const hint_Pan_Card_number = 'Enter Pan Card Number';
   static const hint_Aadhar_Card_number = 'Enter Aadhar Card Number';
+
+  //Pricing Plan
+  static const pricing_Plan = 'Pricing Plan';
+  static const pricing_Plan_sub_hed = 'Sed ut perspiciatis unde omnis iste ai error sit voluptatem accusantium dolor emque';
+  static const Monthly_500 = '₹500/Month';
+  static const Month = 'Monthly';
+  static const Monthly_5000 = '₹5000/Month';
+  static const Monthly_1000 = '₹1000/Month';
+  static const Define = 'Define your trading style';
+  static const Set = 'Set goals and risk tolerance';
+  static const Develop = 'Develop a trading strategy';
+  static const Monitor = 'Monitor and adjust';
+  static const Have = 'Have a contingency plan';
+  static const Implement = 'Implement stop-loss orders';
+  static const Stay = 'Stay update on market news';
 }
