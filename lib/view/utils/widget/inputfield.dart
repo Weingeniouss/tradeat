@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +57,17 @@ class Aboutinputfield extends StatelessWidget {
   }
 }
 
-Widget inputfield({Widget? suffixIcon, int? maxLength, TextInputType? keyboardType, void Function(String)? onChanged, void Function()? onTap, required BuildContext context, required String hintText, required String text, required TextEditingController controller}) {
+Widget inputfield({
+  Widget? suffixIcon,
+  int? maxLength,
+  TextInputType? keyboardType,
+  void Function(String)? onChanged,
+  void Function()? onTap,
+  required BuildContext context,
+  required String hintText,
+  required String text,
+  required TextEditingController controller
+}) {
   final size = AppSize(context);
   final responsivetext = responsive_text(context);
   return Column(
@@ -73,11 +83,7 @@ Widget inputfield({Widget? suffixIcon, int? maxLength, TextInputType? keyboardTy
         cursorColor: AppColor.white_color,
         controller: controller,
         style: TextStyle(fontSize: responsivetext.value, color: AppColor.white_color),
-        decoration: InputDecoration(
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: suffixIcon,
-          ),
+        decoration: InputDecoration(suffixIcon: Padding(padding: EdgeInsets.all(8.0), child: suffixIcon),
           counterText: '',
           hintText: hintText,
           hintStyle: TextStyle(color: AppColor.gray_color, fontSize: responsivetext.value),

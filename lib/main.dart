@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:tradeat/view/screen/creations/authentication/setup_profile_3.dart';
+import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
+import 'package:tradeat/view/screen/splace/logo.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
@@ -27,7 +28,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-
         //
         //**************************** User Interface *********************
         //
@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
 
         //pricing plan
         BlocProvider(create: (_) => PricingBloc(), child: PricingPlan()),
-
       ],
       child: MaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -67,7 +66,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: SetupProfile_thard(),
+        home: SetupProfile_scecond(),
       ),
     );
   }

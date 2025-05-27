@@ -81,10 +81,8 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     final country = selectAddress.firstWhere(
       (c) => c['Country'] == state.selectedCountry,
     );
-    final province = (country['ProvinceList'] as List).cast<Map<String, dynamic>>()
-      .firstWhere((prov) => prov['Name'] == stateName);
-    final cities = (province['CityList'] as List).cast<Map<String, dynamic>>()
-      .map((city) => city['CityName'] as String).toList();
+    final province = (country['ProvinceList'] as List).cast<Map<String, dynamic>>().firstWhere((prov) => prov['Name'] == stateName);
+    final cities = (province['CityList'] as List).cast<Map<String, dynamic>>().map((city) => city['CityName'] as String).toList();
 
     int newProgress = state.progressCount;
     bool stateUpdated = state.stateProgressUpdated;
