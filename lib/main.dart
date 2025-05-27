@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:tradeat/view/screen/creations/authentication/auth_mobile_number.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
 import 'package:tradeat/view/screen/splace/logo.dart';
 import 'package:tradeat/view/utils/app_color.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: SetupProfile_scecond(),
+        home: AuthMobileNumber(),
       ),
     );
   }

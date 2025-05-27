@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unnecessary_import, must_be_immutable, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unnecessary_import, must_be_immutable, prefer_const_constructors_in_immutables, avoid_print
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +31,7 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
 
   TextEditingController mobile_number_controller = TextEditingController();
 
-  final maskFormatter = MaskTextInputFormatter(
-      mask: '### ### ####', filter: {"#": RegExp(r'[0-9]')});
+  final maskFormatter = MaskTextInputFormatter(mask: '### ### ####', filter: {"#": RegExp(r'[0-9]')});
 
   int maxLength = 12;
 
@@ -85,27 +85,40 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                               height: size.height / 14, width: size.width / 4,
                               decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadiusDirectional.circular(size.width / 25)),
                               child: Center(
-                                child: DropdownButton<String>(
-                                  isDense: true,
-                                  menuMaxHeight: size.height / 3,
-                                  icon: SvgPicture.asset(AppIcon.down),
+                                child: DropdownButton2<String>(
+                                 isDense: true,
+                                  iconStyleData: IconStyleData(icon: SvgPicture.asset(AppIcon.down)),
                                   underline: SizedBox(),
-                                  dropdownColor: AppColor.textfield_color,
-                                  value: state.selectedDialCode,
-                                  onChanged: (String? newValue) {
+                                  dropdownStyleData: DropdownStyleData(
+                                  maxHeight: size.height / 3,
+                                  width: size.width / 4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(size.width / 25),
+                                    color: AppColor.textfield_color,
+                                  ),
+                                    offset: Offset(-20, -30), elevation: 0,
+                                  ),
+                                   value: state.selectedDialCode,
+                                    onChanged: (String? newValue) {
                                     if (newValue != null) {
+                                      print("Selected Dial Code: $newValue");
                                       context.read<AuthMobileNumberBloc>().add(DialCodeChanged(newValue));
                                     }
-                                  },
-                                  items: countryCodes.map((country) {
-                                    return DropdownMenuItem<String>(
-                                      value: country['dial_code'],
-                                      child: Text('${country['dial_code']}', style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value)),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            ),
+                                },
+                                items: countryCodes.map((country) {
+                                  return DropdownMenuItem<String>(
+                                value: country['dial_code'],
+                                  child: Text(
+                                     '${country['dial_code']}',
+                                      style: TextStyle(
+                                       color: AppColor.white_color,
+                                       fontSize: responsivetext.value,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  );
+                                }).toList())
+                              )),
                             SizedBox(width: size.width / 30),
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: size.width / 20),
