@@ -15,6 +15,7 @@ import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo
 import 'controller/userInterface/creations/bloc/user_verification/mobile_otp_bloc/mobile_otp_bloc.dart';
 import 'controller/userInterface/creations/event/splash/logo_controller_evant/logo_event.dart';
 import 'modal/country_state_city.dart';
+import 'view/screen/creations/authentication/setup_profile_1.dart';
 import 'view/screen/creations/create_plan/pricing_plan.dart';
 
 
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: Logo(),
+        home: SetupProfile_frist(),
       ),
     );
   }

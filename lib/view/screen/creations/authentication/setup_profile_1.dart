@@ -56,7 +56,7 @@ class SetupProfile_frist extends StatelessWidget {
                                     onTap: () => context.read<ProfileBloc>().add(PickImageEvent()),
                                     child: (state.image != null) ? Column(
                                       children: [
-                                        ClipOval(child: Image.file(state.image!, width: 90, height: 90, fit: BoxFit.cover)),
+                                        ClipOval(child: Image.file(state.image!, width: 80, height: 80, fit: BoxFit.cover)),
                                         SizedBox(height: size.height / 70),
                                         Text('Profile Photo', style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value)),
                                       ],
@@ -65,9 +65,9 @@ class SetupProfile_frist extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(height: size.height / 50),
-                              inputfield(onChanged: (val) => context.read<ProfileBloc>().add(NameEnteredEvent()), context: context, hintText: AppString.hint_name, text: AppString.name, controller: fullname_controller,),
-                              inputfield(onChanged: (val) => context.read<ProfileBloc>().add(EmailEnteredEvent()), context: context, hintText: AppString.hint_Email, text: AppString.Email, controller: email_controller,),
-                              Aboutinputfield(onChanged: (val) => context.read<ProfileBloc>().add(AboutTextChangedEvent(val)), abouting_controller: about_controller,),
+                              inputfield(onChanged: (val) => context.read<ProfileBloc>().add(NameEnteredEvent(fullname_controller.text)), context: context, hintText: AppString.hint_name, text: AppString.name, controller: fullname_controller),
+                              inputfield(onChanged: (val) => context.read<ProfileBloc>().add(EmailEnteredEvent(email_controller.text)), context: context, hintText: AppString.hint_Email, text: AppString.Email, controller: email_controller),
+                              Aboutinputfield(onChanged: (val) => context.read<ProfileBloc>().add(AboutTextChangedEvent(val)), abouting_controller: about_controller),
                               SizedBox(height: size.height / 40),
                               Button(
                               onTap: () {

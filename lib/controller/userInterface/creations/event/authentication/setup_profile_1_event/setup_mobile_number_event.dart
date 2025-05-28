@@ -7,6 +7,14 @@ class AboutTextChangedEvent extends ProfileEvent {
   AboutTextChangedEvent(this.aboutText);
 }
 
-class NameEnteredEvent extends ProfileEvent {}
+class NameEnteredEvent extends ProfileEvent {
+  final String name;
 
-class EmailEnteredEvent extends ProfileEvent {}
+  NameEnteredEvent(this.name);
+}
+
+class EmailEnteredEvent extends ProfileEvent {
+  final String email;
+
+  EmailEnteredEvent(this.email);
+}

@@ -29,31 +29,55 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   void _onAboutTextChanged(AboutTextChangedEvent event, Emitter<ProfileState> emit) {
-    final newLength = event.aboutText.length;
-    final shouldAddProgress = newLength > 0 && !state.isAboutAdded;
+  final newLength = event.aboutText.trim().length;
 
+  if (newLength > 0 && !state.isAboutAdded) {
     emit(state.copyWith(
       charCount: newLength,
-      progress: shouldAddProgress ? state.progress + progressStep : state.progress,
-      isAboutAdded: shouldAddProgress ? true : state.isAboutAdded,
+      progress: state.progress + progressStep,
+      isAboutAdded: true,
     ));
+  } else if (newLength == 0 && state.isAboutAdded) {
+    emit(state.copyWith(
+      charCount: newLength,
+      progress: state.progress - progressStep,
+      isAboutAdded: false,
+    ));
+  } else {
+    // Only update charCount if no progress change is needed
+    emit(state.copyWith(charCount: newLength));
   }
+}
 
   void _onNameEntered(NameEnteredEvent event, Emitter<ProfileState> emit) {
-    if (!state.isNameAdded) {
-      emit(state.copyWith(
-        progress: state.progress + progressStep,
-        isNameAdded: true,
-      ));
-    }
+  final name = event.name.trim();
+
+  if (name.isNotEmpty && name.length >= 4 && !state.isNameAdded) {
+    emit(state.copyWith(
+      progress: state.progress + progressStep,
+      isNameAdded: true,
+    ));
+  } else if ((name.isEmpty || name.length < 4) && state.isNameAdded) {
+    emit(state.copyWith(
+      progress: state.progress - progressStep,
+      isNameAdded: false,
+    ));
   }
+}
 
   void _onEmailEntered(EmailEnteredEvent event, Emitter<ProfileState> emit) {
-    if (!state.isEmailAdded) {
-      emit(state.copyWith(
-        progress: state.progress + progressStep,
-        isEmailAdded: true,
-      ));
-    }
+  final email = event.email.trim();
+
+  if (email.isNotEmpty && email.length >= 10 && !state.isEmailAdded) {
+    emit(state.copyWith(
+      progress: state.progress + progressStep,
+      isEmailAdded: true,
+    ));
+  } else if ((email.isEmpty || email.length < 10) && state.isEmailAdded) {
+    emit(state.copyWith(
+      progress: state.progress - progressStep,
+      isEmailAdded: false,
+    ));
   }
+}
 }
