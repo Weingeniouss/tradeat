@@ -7,6 +7,7 @@ class AppString {
   static const Verify = 'Verify';
   static const Next = 'Next';
   static const Subscribe = 'Subscribe';
+  static const skip = 'Skip';
 
   //Dialog
   static const Please_Wait = 'Please Wait...';
@@ -71,4 +72,20 @@ class AppString {
   static const Have = 'Have a contingency plan';
   static const Implement = 'Implement stop-loss orders';
   static const Stay = 'Stay update on market news';
+
+  //create plan
+  static const Create = 'Create New Channel';
+  static const subCreate = 'Sed ut perspiciatis unde omnis iste ai error sit voluptatem accusantium dolor emque.';
+  static const hintChannel = 'Enter Channel Name';
+  static const Channel = 'Enter Channel Name';
+  static const hitaboutChannel = 'Write Something About Channel...';
+
+  //Channel Permission
+  static const Channel_ermission = 'Channel Permission';
+  static const Channel_Private = 'Do You Want To Make This Channel Private ?';
+  static const Join_The_Channel = 'Request Required For Members To Join The Channel ?';
+  static const Channel_Features = 'Channel Features';
+  static const hintChannelFeatures =  'Enter Your Channel Features';
+  static const Channel_Permission = 'Channel Permission';
+  static const Add_Feature = '+Add Feature';
 }

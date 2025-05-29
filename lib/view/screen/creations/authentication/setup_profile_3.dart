@@ -99,6 +99,22 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
       builder: (context, progressValue, _) {
         return Scaffold(
           appBar: authenticationAppBar(context: context, progress: progressValue),
+          bottomNavigationBar: (Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
+              ? Container(
+            height: size.height / 10,
+                color: AppColor.black_color,
+                child: Center(
+                  child: horizontalPadding(
+                    context: context,
+                    child: Button(onTap: (){
+                      if(Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PricingPlan(), fullscreenDialog: true, maintainState: true, allowSnapshotting: true));
+                      }
+                      },context: context, buttonname: AppString.Next,buttoncondition: Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10),
+                  ),
+                ),
+              )
+              : SizedBox(),
           body: Container(
             width: size.width, height: size.height,
             decoration: BoxDecoration(color: AppColor.black_color),
@@ -276,13 +292,13 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                         )
                       ),
                     ),
-                  (Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
-                      ? Button(onTap: (){
-                         if(Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10){
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => PricingPlan(), fullscreenDialog: true, maintainState: true, allowSnapshotting: true));
-                         }
-                       },context: context, buttonname: AppString.Next,buttoncondition: Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
-                      : SizedBox(),
+                  // (Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
+                  //     ? Button(onTap: (){
+                  //        if(Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10){
+                  //          Navigator.push(context, MaterialPageRoute(builder: (context) => PricingPlan(), fullscreenDialog: true, maintainState: true, allowSnapshotting: true));
+                  //        }
+                  //      },context: context, buttonname: AppString.Next,buttoncondition: Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
+                  //     : SizedBox(),
                   SizedBox(height: size.height / 50),
                 ],
               ),

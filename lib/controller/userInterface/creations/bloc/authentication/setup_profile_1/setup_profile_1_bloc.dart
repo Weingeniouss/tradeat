@@ -16,6 +16,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<EmailEnteredEvent>(_onEmailEntered);
   }
 
+  bool isValidEmail(String email) {
+  final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+  return emailRegex.hasMatch(email);
+}
+
+bool isValidName(String name) {
+  final nameRegex = RegExp(r"^[a-zA-Z\s.'-]{4,}$");
+  return nameRegex.hasMatch(name);
+}
+
   Future<void> _onPickImage(PickImageEvent event, Emitter<ProfileState> emit) async {
     final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
 
@@ -44,7 +54,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       isAboutAdded: false,
     ));
   } else {
-    // Only update charCount if no progress change is needed
     emit(state.copyWith(charCount: newLength));
   }
 }
@@ -52,7 +61,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void _onNameEntered(NameEnteredEvent event, Emitter<ProfileState> emit) {
   final name = event.name.trim();
 
-  if (name.isNotEmpty && name.length >= 4 && !state.isNameAdded) {
+  if (name.isNotEmpty && name.length >= 4 && isValidName(name) && !state.isNameAdded) {
     emit(state.copyWith(
       progress: state.progress + progressStep,
       isNameAdded: true,
@@ -68,7 +77,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   void _onEmailEntered(EmailEnteredEvent event, Emitter<ProfileState> emit) {
   final email = event.email.trim();
 
-  if (email.isNotEmpty && email.length >= 10 && !state.isEmailAdded) {
+  if (email.isNotEmpty && email.length >= 10 && isValidEmail(email) && !state.isEmailAdded) {
     emit(state.copyWith(
       progress: state.progress + progressStep,
       isEmailAdded: true,

@@ -13,8 +13,11 @@ class Aboutinputfield extends StatelessWidget {
   final TextEditingController abouting_controller;
   final void Function(String)? onChanged;
   final void Function()? onTap;
+  final String? hintText;
+  final String? text;
+  final Widget? widget;
 
-  const Aboutinputfield({super.key, required this.abouting_controller, this.onChanged, this.onTap});
+  const Aboutinputfield({super.key, required this.abouting_controller, this.onChanged, this.onTap, this.hintText, this.text, this.widget});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,13 @@ class Aboutinputfield extends StatelessWidget {
         return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppString.About_You, style: TextStyle(fontSize: responsivetext.value, color: AppColor.other_text_color)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(text ??AppString.About_You, style: TextStyle(fontSize: responsivetext.value, color: AppColor.other_text_color)),
+              if (widget != null) widget!,
+            ],
+          ),
           SizedBox(height: size.height / 80),
           SizedBox(
             height: size.height / 6.5,
@@ -36,9 +45,12 @@ class Aboutinputfield extends StatelessWidget {
                   onTap: onTap,
                   cursorColor: AppColor.white_color,
                   controller: abouting_controller,
-                  maxLines: 100, maxLength: state.maxLength,
+                  maxLines: 100,
+                  maxLength: state.maxLength,
                   style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value),
                   decoration: InputDecoration(
+                    hintText: hintText,
+                    hintStyle: TextStyle(color: AppColor.other_text_color,fontSize: size.width / 26),
                     contentPadding: EdgeInsets.symmetric(vertical: size.width / 15, horizontal: size.width / 15),
                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),
                     disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.textfield_color_2), borderRadius: BorderRadius.circular(size.width / 30)),

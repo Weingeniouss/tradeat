@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -101,6 +101,60 @@ PreferredSizeWidget authenticationprice({required BuildContext context}) {
                       SizedBox(width: size.width / 1.4 ,child: Text(AppString.pricing_Plan_sub_hed, style: TextStyle(color: AppColor.gray_color, fontSize: subheadingSize.value))),
                     ],
                   ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+PreferredSizeWidget authenticationChannel({required BuildContext context}) {
+  final size = AppSize(context);
+  double appbarsize =  size.height / 3.6;
+  final headingSize = heading(context);
+  final subheadingSize = subheading(context);
+  final responsivetext = responsive_text(context);
+  return PreferredSize(
+    preferredSize: Size.fromHeight(appbarsize),
+    child: Container(
+      height: appbarsize, width: size.width,
+      decoration: BoxDecoration(color: AppColor.black_color),
+      child: SafeArea(
+        child: horizontalPadding(
+          context: context,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: size.height / 80),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
+                   Container(
+                    width: size.width / 6, height: size.height / 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColor.yellow_color, AppColor.orange_color,
+                        ],
+                        begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                      ),
+                    ),
+                     child: Center(child: Text(AppString.skip,style: TextStyle(fontWeight: FontWeight.w700))),
+                  ),
+                ],
+              ),
+              SizedBox(height: size.height / 40),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(AppString.Create, style: TextStyle(color: AppColor.white_color, fontSize: headingSize.value)),
+                  SizedBox(height: size.height / 50),
+                  SizedBox(width: size.width / 1.4 ,child: Text(AppString.subCreate, style: TextStyle(color: AppColor.gray_color, fontSize: subheadingSize.value))),
                 ],
               )
             ],

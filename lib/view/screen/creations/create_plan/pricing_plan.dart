@@ -8,6 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tradeat/controller/userInterface/creations/bloc/create_plan/create_plan_bloc.dart';
 import 'package:tradeat/controller/userInterface/creations/state/create_plan/create_plan_state.dart';
 import 'package:tradeat/modal/price_tag.dart';
+import 'package:tradeat/view/screen/creations/create_plan/create_channel.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
@@ -23,6 +24,7 @@ class PricingPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = AppSize(context);
+    bool buttoncondition = true;
     return Scaffold(
       appBar: authenticationprice(context: context),
       body: BlocBuilder<PricingBloc,PricingState>(
@@ -31,7 +33,6 @@ class PricingPlan extends StatelessWidget {
           if (state is PricingInitial) {
             activeIndex = state.currentIndex;
           }
-
           return Container(
           width: size.width,
           height: size.height,
@@ -41,9 +42,11 @@ class PricingPlan extends StatelessWidget {
               SizedBox(height: size.height / 50),
               CarouselSlider(
                   items: [
-                    add_Container(context: context, Month: AppString.Monthly_500),
-                    add_Container(context: context, Month: AppString.Monthly_1000),
-                    add_Container(context: context, Month: AppString.Monthly_5000),
+                    add_Container(context: context, Month: AppString.Monthly_500,button: Button(onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateChannel()));
+                    } ,context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
+                    add_Container(context: context, Month: AppString.Monthly_1000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
+                    add_Container(context: context, Month: AppString.Monthly_5000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
                   ],
                   options: CarouselOptions(
                       reverse: false,
@@ -83,9 +86,8 @@ class PricingPlan extends StatelessWidget {
   }
 }
 
-Widget add_Container({required BuildContext context, required String Month}) {
+Widget add_Container({required BuildContext context, required String Month,Widget? button}) {
   final size = AppSize(context);
-  bool buttoncondition = true;
   return StatefulBuilder(
     builder: (BuildContext context, void Function(void Function()) setState) {
       return Container(
@@ -145,7 +147,7 @@ Widget add_Container({required BuildContext context, required String Month}) {
                     );
                   }),
             ),
-            Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition),
+            button!,
             SizedBox(height: size.height / 50),
           ],
         ),

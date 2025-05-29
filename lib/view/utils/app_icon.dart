@@ -15,4 +15,8 @@ class AppIcon{
   static const Suessess = 'asset/icon/chexktrue.svg';
   static const banck_true = 'asset/icon/bank_true.svg';
   static const price = 'asset/icon/price.svg';
+  static const swich = 'asset/icon/swich.png';
+  static const swich_true = 'asset/icon/swich_true.png';
+  static const delet = 'asset/icon/delet.svg';
+  static const edit = 'asset/icon/edit.svg';
 }
