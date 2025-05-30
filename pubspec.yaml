@@ -49,9 +49,10 @@ dependencies:
   dropdown_button2:
   equatable:
   carousel_slider:
-  smooth_page_indicator: ^1.2.1
-  slider_button: ^2.1.0
-  animated_toggle_switch: ^0.8.5
+  smooth_page_indicator:
+  slider_button:
+  animated_toggle_switch:
+  intl:
 
 dev_dependencies:
   flutter_test:

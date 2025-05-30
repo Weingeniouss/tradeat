@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import '../../../controller/userInterface/creations/state/authentication/setup_profile_1/setup_profile_1_state.dart';
@@ -78,7 +79,8 @@ Widget inputfield({
   required BuildContext context,
   required String hintText,
   required String text,
-  required TextEditingController controller
+  required TextEditingController controller,
+  List<TextInputFormatter>? inputFormatters
 }) {
   final size = AppSize(context);
   final responsivetext = responsive_text(context);
@@ -88,17 +90,18 @@ Widget inputfield({
       Text(text, style: TextStyle(color: AppColor.other_text_color, fontSize: responsivetext.value)),
       SizedBox(height: size.height / 80),
       TextField(
+        inputFormatters: inputFormatters,
         maxLength: maxLength,
         keyboardType: keyboardType,
         onChanged: onChanged,
         onTap: onTap,
         cursorColor: AppColor.white_color,
         controller: controller,
-        style: TextStyle(fontSize: responsivetext.value, color: AppColor.white_color),
+        style: TextStyle(color: AppColor.white_color),
         decoration: InputDecoration(suffixIcon: Padding(padding: EdgeInsets.all(8.0), child: suffixIcon),
           counterText: '',
           hintText: hintText,
-          hintStyle: TextStyle(color: AppColor.gray_color, fontSize: responsivetext.value),
+          hintStyle: TextStyle(color: AppColor.gray_color,fontWeight: FontWeight.w300,fontSize: size.width / 28),
           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(size.width / 30), borderSide: BorderSide(color: AppColor.textfield_color_2)),
           disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(size.width / 30), borderSide: BorderSide(color: AppColor.textfield_color_2)),
           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(size.width / 30), borderSide: BorderSide(color: AppColor.textfield_color_2)),

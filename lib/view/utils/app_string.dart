@@ -88,4 +88,18 @@ class AppString {
   static const hintChannelFeatures =  'Enter Your Channel Features';
   static const Channel_Permission = 'Channel Permission';
   static const Add_Feature = '+Add Feature';
+
+  //Channel plan
+  static const Channel_Plan = 'Channel Plan';
+  static const Plan_Amount = 'Plan Amount (In Rupees)';
+  static const Offer_Price = 'Offer Price (In Rupees)';
+  static const Duration_Days = 'Duration Days';
+  static const Do_You_Want = 'Do You Want To Allowed Trial Period ?';
+  static const Trail_Plan = 'Trail Plan Days';
+  static const Select_Trail = 'Select Trail Plan Days';
+  static const hintpalnammount = 'Enter Plan Amount';
+  static const hintofferprice = 'Enter Offer Price';
+  static const select_Duration = 'Select Duration Days';
+  static const TrailPlanDays = 'Trail Plan Days';
+  static const SelectTrailPlanDays = 'Select Trail Plan Days';
 }

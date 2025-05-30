@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, file_names, unused_import
+// ignore_for_file: avoid_print, prefer_const_constructors, file_names, unused_import, non_constant_identifier_names, must_be_immutable
 
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
@@ -18,55 +18,14 @@ import '../../../../controller/userInterface/creations/bloc/authentication/setup
 import '../../../../controller/userInterface/creations/event/authentication/setup_profile_1_event/setup_mobile_number_event.dart';
 import '../../../../controller/userInterface/creations/event/create_plan/create_channel_Permission_event.dart';
 import '../../../../controller/userInterface/creations/state/authentication/setup_profile_1/setup_profile_1_state.dart';
+import '../../../utils/widget/authentication_appbar.dart';
 import '../../../utils/widget/swich.dart';
+import 'channel_plan.dart';
 
-class ChannelPermission extends StatefulWidget {
-  const ChannelPermission({super.key});
-
-  @override
-  State<ChannelPermission> createState() => _ChannelPermissionState();
-}
-
-class _ChannelPermissionState extends State<ChannelPermission> {
+class ChannelPermission extends StatelessWidget {
+ ChannelPermission({super.key});
 
   TextEditingController abouting_controller = TextEditingController();
-
-  // bool private = false;
-  // bool joinchannel = false;
-  //
-  // var listing;
-  //
-  // List<String> addchannelfeature = [];
-  //
-  // void isprivate(){
-  //   setState(() {
-  //     private = !private;
-  //   });
-  // }
-  //
-  // void isjoinchannel(){
-  //   setState(() {
-  //     joinchannel = !joinchannel;
-  //   });
-  // }
-  //
-  // void addlist(){
-  //   listing = addchannelfeature;
-  //
-  //    setState(() {
-  //      listing.add(abouting_controller.text);
-  //    });
-  //    abouting_controller.clear();
-  // }
-  //
-  // void removeaddlist(index){
-  //   setState(() {
-  //     addchannelfeature.removeAt(index);
-  //     if(addchannelfeature.isEmpty){
-  //       listing = null;
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,23 +34,19 @@ class _ChannelPermissionState extends State<ChannelPermission> {
     return BlocBuilder<ChannelPermissionBloc, ChannelPermissionState>(
       builder: (BuildContext context, state) {
         return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColor.black_color,
-          title: Row(
-            children: [
-              SizedBox(width: size.width / 28),
-              SvgPicture.asset(AppIcon.left),
-            ],
-          ),
-          automaticallyImplyLeading: false,
-        ),
+        appBar: simpaleaapbar(context),
         bottomNavigationBar: Container(
           height: size.height / 10,
           color: AppColor.black_color,
             child: Column(
               children: [
-                (state.features.isNotEmpty) ? horizontalPadding(child: Button(buttoncondition: true,context: context,buttonname: AppString.Next),context: context) : SizedBox(),
+                (state.features.isNotEmpty) ? horizontalPadding(
+                    child: Button(
+                      buttoncondition: true,
+                      context: context,
+                      buttonname: AppString.Next,onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => ChannelPlan())),
+                    ),context: context,
+                ) : SizedBox(),
               ],
             ),
         ),

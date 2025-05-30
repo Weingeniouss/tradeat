@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors, unnecessary_import
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -162,5 +162,20 @@ PreferredSizeWidget authenticationChannel({required BuildContext context}) {
         ),
       ),
     ),
+  );
+}
+
+PreferredSizeWidget simpaleaapbar(context){
+  final size = AppSize(context);
+  return  AppBar(
+    elevation: 0,
+    backgroundColor: AppColor.black_color,
+    title: Row(
+      children: [
+        SizedBox(width: size.width / 28),
+        GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
+      ],
+    ),
+    automaticallyImplyLeading: false,
   );
 }

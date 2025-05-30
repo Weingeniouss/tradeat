@@ -32,7 +32,7 @@ Widget SelectedDropdown({
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(text, style: TextStyle(color: (condition) ? AppColor.white_color : AppColor.gray_color)),
+                Text(text, style: TextStyle(color: (condition) ? AppColor.white_color : AppColor.gray_color,fontSize: size.width / 29)),
                 SvgPicture.asset(AppIcon.down, color: AppColor.gray_color),
               ],
             ),

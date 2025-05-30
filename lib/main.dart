@@ -7,6 +7,7 @@ import 'package:tradeat/controller/userInterface/creations/bloc/create_plan/crea
 import 'package:tradeat/view/screen/creations/authentication/auth_mobile_number.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
 import 'package:tradeat/view/screen/creations/create_plan/channel_Permission.dart';
+import 'package:tradeat/view/screen/creations/create_plan/channel_plan.dart';
 import 'package:tradeat/view/screen/creations/create_plan/create_channel.dart';
 import 'package:tradeat/view/screen/splace/logo.dart';
 import 'package:tradeat/view/utils/app_color.dart';
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: Logo(),
+        home: ChannelPlan(),
       ),
     );
   }
