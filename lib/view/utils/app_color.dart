@@ -14,6 +14,8 @@ class AppColor {
   static Color button_text_color = Color(0xff0A0A0A);
   static Color textfield_color_2 = Color(0xff46464F);
   static Color disable_button_color = Color(0xff595959);
+  static Color blue_color = Color(0xff55ADFF);
+  static Color green_color = Color(0xff77C56B);
 
   // Linear Gradient
 

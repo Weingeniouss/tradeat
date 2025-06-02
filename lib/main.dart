@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:tradeat/controller/userInterface/creations/bloc/create_plan/create_channel_permission_bloc.dart';
 import 'package:tradeat/view/screen/creations/authentication/auth_mobile_number.dart';
@@ -11,9 +12,11 @@ import 'package:tradeat/view/screen/creations/create_plan/channel_plan.dart';
 import 'package:tradeat/view/screen/creations/create_plan/create_channel.dart';
 import 'package:tradeat/view/screen/splace/logo.dart';
 import 'package:tradeat/view/utils/app_color.dart';
+import 'package:tradeat/view/utils/widget/bottam_navigation/Daily_Trading_navigation.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_2/setup_profile_2.dart';
+import 'controller/userInterface/creations/bloc/create_plan/channel_plan_bloc.dart';
 import 'controller/userInterface/creations/bloc/create_plan/create_channel_bloc.dart';
 import 'controller/userInterface/creations/bloc/create_plan/create_plan_bloc.dart';
 import 'controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
@@ -23,6 +26,7 @@ import 'modal/country_state_city.dart';
 import 'view/screen/creations/authentication/setup_profile_1.dart';
 import 'view/screen/creations/authentication/setup_profile_3.dart';
 import 'view/screen/creations/create_plan/pricing_plan.dart';
+import 'view/utils/widget/bottam_navigation/channale_navigation.dart';
 
 
 void main() {
@@ -63,8 +67,11 @@ class MyApp extends StatelessWidget {
 
         //create Permission
         BlocProvider(create: (_) => ChannelPermissionBloc()),
+
+        //channal plan
+        BlocProvider(create: (_) => DurationCubit()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(
           child: child!,
           breakpoints: [
@@ -80,7 +87,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: ChannelPlan(),
+        home: Logo(),
       ),
     );
   }

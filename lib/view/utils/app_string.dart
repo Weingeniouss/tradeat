@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+
 class AppString {
   //Button
   static const Continue = 'Continue';
@@ -8,6 +9,19 @@ class AppString {
   static const Next = 'Next';
   static const Subscribe = 'Subscribe';
   static const skip = 'Skip';
+
+  //bottm navigation
+  //My Channel
+  static const Channels = 'Channel';
+  static const Chat = 'Chat';
+  static const Home = 'Home';
+  static const Signal = 'Signal';
+  static const Account = 'Account';
+  //Daliy trading App
+  static const Message = 'Message';
+  static const Watchlist = 'Watchlist';
+  static const signal = 'Signal';
+  static const Members = 'Members';
 
   //Dialog
   static const Please_Wait = 'Please Wait...';
@@ -102,4 +116,18 @@ class AppString {
   static const select_Duration = 'Select Duration Days';
   static const TrailPlanDays = 'Trail Plan Days';
   static const SelectTrailPlanDays = 'Select Trail Plan Days';
+
+  //Show value
+  static const Free_trial = '7 Days Free Trial';
+  static const addplan ='+ Add Plan';
+
+  //My Channel
+  static const MyChannel = "My Channel";
+  static const Create_Channel = '+Create Channel';
+  //My channel listing
+  static const DailyTradingTips = 'Daily Trading Tips';
+  static const subtextDailyTradingTips = 'Sed ut perspiciatis unde omnis iste ai error sit voluptatem accusantium dolor emque.';
+  static const win = 'WIN';
+  static const AVGRETURN = 'AVG. RETURN';
+  static const LIVESIGNAL = 'LIVE SIGNAL';
 }

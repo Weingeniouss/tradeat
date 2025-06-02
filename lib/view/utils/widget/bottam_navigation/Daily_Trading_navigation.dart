@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../screen/menu/my_channal/daily_trading_tips.dart';
+import '../../../screen/menu/my_channal/signal/signal.dart';
 import '../../app_color.dart';
 import '../../app_icon.dart';
 import '../../app_string.dart';
@@ -22,7 +22,7 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
   int selectindex = 0;
 
   List<Widget> selectedscreen = [
-    DailyTradingTips(),
+    Singnal(),
   ];
 
   Widget widgetselected(index) {
@@ -55,7 +55,7 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
 
-                    //channel
+                    //Signal
                     GestureDetector(
                       onTap: () => channelindex(),
                       child: Column(
@@ -81,16 +81,16 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                                   ],
                                 )
                               : SizedBox(height: size.height / 55),
-                          SvgPicture.asset((selectindex == 0) ? AppIcon.channel_true : AppIcon.channel_flase),
+                          SvgPicture.asset((selectindex == 0) ? AppIcon.Singnal_true : AppIcon.Signal_flase),
                           SizedBox(height: size.height / 150),
                           (selectindex == 0)
-                              ? Shadermask(context: context, text: AppString.Channels)
-                              : Text(AppString.Channels, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+                              ? Shadermask(context: context, text: AppString.signal)
+                              : Text(AppString.signal, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
                         ],
                       ),
                     ),
 
-                    //chart
+                    //Watchlist
                     Column(
                       children: [
                         (selectindex == 1)
@@ -113,13 +113,13 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                                 ],
                               )
                             : SizedBox(height: size.height / 55),
-                        SvgPicture.asset(AppIcon.chart_false),
+                        SvgPicture.asset(AppIcon.watchlist_false),
                         SizedBox(height: size.height / 150),
-                        Text(AppString.Chat, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+                        Text(AppString.Watchlist, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
                       ],
                     ),
 
-                    //home
+                    //chart
                     Column(
                       children: [
                         (selectindex == 2)
@@ -146,9 +146,9 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(AppIcon.home_false),
+                            SvgPicture.asset(AppIcon.chart_false),
                             SizedBox(height: size.height / 150),
-                            Text(AppString.Home, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+                            Text(AppString.Message, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
                           ],
                         ),
                       ],
@@ -178,9 +178,9 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                                 ],
                               )
                             : SizedBox(height: size.height / 55),
-                        SvgPicture.asset(AppIcon.singal_false),
+                        SvgPicture.asset(AppIcon.Account_flase),
                         SizedBox(height: size.height / 150),
-                        Text(AppString.Signal, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+                        Text(AppString.Members, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
                       ],
                     ),
                   ],

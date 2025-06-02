@@ -3,7 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:tradeat/view/utils/widget/bottam_navigation/channale_navigation.dart';
+import 'package:tradeat/view/utils/widget/shadermask.dart';
 import '../app_color.dart';
 import '../app_icon.dart';
 import '../app_string.dart';
@@ -133,19 +136,24 @@ PreferredSizeWidget authenticationChannel({required BuildContext context}) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
-                   Container(
-                    width: size.width / 6, height: size.height / 20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColor.yellow_color, AppColor.orange_color,
-                        ],
-                        begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                   GestureDetector(
+                     onTap: () {
+                       Get.offAll(() => ChannaleNavigation());
+                     },
+                     child: Container(
+                      width: size.width / 6, height: size.height / 20,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColor.yellow_color, AppColor.orange_color,
+                          ],
+                          begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                        ),
                       ),
-                    ),
-                     child: Center(child: Text(AppString.skip,style: TextStyle(fontWeight: FontWeight.w700))),
-                  ),
+                       child: Center(child: Text(AppString.skip,style: TextStyle(fontWeight: FontWeight.w700))),
+                     ),
+                   ),
                 ],
               ),
               SizedBox(height: size.height / 40),
@@ -165,16 +173,26 @@ PreferredSizeWidget authenticationChannel({required BuildContext context}) {
   );
 }
 
-PreferredSizeWidget simpaleaapbar(context){
+PreferredSizeWidget simpaleaapbar(context,{String? text, String? subtext, String? icons}){
   final size = AppSize(context);
-  return  AppBar(
+  return AppBar(
     elevation: 0,
     backgroundColor: AppColor.black_color,
-    title: Row(
-      children: [
-        SizedBox(width: size.width / 28),
-        GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
-      ],
+    title: Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.width / 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          (text != null) ? Row(
+            children: [
+              (icons != null) ? GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(icons)) : SizedBox(),
+              (icons != null) ? SizedBox(width: size.width / 30) :  SizedBox(),
+              Text(text,style: TextStyle(fontSize: size.width / 23,fontWeight: FontWeight.w600,color: AppColor.white_color)),
+            ],
+          ) : GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
+          (subtext != null) ? Shadermask(context: context, text: subtext,fontSize: size.width / 25) : SizedBox(),
+        ],
+      ),
     ),
     automaticallyImplyLeading: false,
   );
