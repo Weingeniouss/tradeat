@@ -31,15 +31,11 @@ class _ChannaleNavigationState extends State<ChannaleNavigation> {
   }
 
   void channelindex() {
-    setState(() {
-      selectindex = 0;
-    });
+    setState(() => selectindex = 0);
   }
 
   void chatindex(){
-    setState(() {
-      selectindex = 1;
-    });
+    setState(() => selectindex = 1);
   }
 
 
@@ -67,172 +63,19 @@ class _ChannaleNavigationState extends State<ChannaleNavigation> {
                     children: [
 
                       //channel
-                      SizedBox(
-                        width: size.width / 7,
-                        child: GestureDetector(
-                          onTap: () => channelindex(),
-                          child: Column(
-                            children: [
-                              (selectindex == 0)
-                                  ? SizedBox(
-                                    height: size.height / 55,
-                                    child: (selectindex == 0) ? Column(
-                                      children: [
-                                        Container(
-                                          height: size.height / 180,
-                                          width: size.width / 28,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                              gradient: LinearGradient(
-                                                colors: [AppColor.yellow_color, AppColor.orange_color],
-                                                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                                )),
-                                          ),
-                                          SizedBox(height: size.height / 80),
-                                        ],
-                                      ) : SizedBox.shrink(),
-                                  )
-                                  : SizedBox(height: size.height / 55),
-                              SvgPicture.asset((selectindex == 0) ? AppIcon.channel_true : AppIcon.channel_flase),
-                              SizedBox(height: size.height / 150),
-                              (selectindex == 0)
-                                  ? Shadermask(context: context, text: AppString.Channels)
-                                  : Text(AppString.Channels, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                            ],
-                          ),
-                        ),
-                      ),
+                      iconsTupe(onTap: () => channelindex(), context: context, indexs: selectindex == 0, text: AppString.Channels, trueicon: AppIcon.channel_true, falseicon: AppIcon.channel_flase),
 
                       //chart
-                      SizedBox(
-                        width: size.width / 7,
-                        child: GestureDetector(
-                          onTap: () => chatindex(),
-                          child: Column(
-                            children: [
-                              (selectindex == 1)
-                                    ? SizedBox(
-                                      height: size.height / 55,
-                                      child: (selectindex == 1) ? Column(
-                                        children: [
-                                          Container(
-                                            height: size.height / 180,
-                                            width: size.width / 28,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                                gradient: LinearGradient(
-                                                  colors: [AppColor.yellow_color, AppColor.orange_color],
-                                                    begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                                  )),
-                                            ),
-                                            SizedBox(height: size.height / 80),
-                                          ],
-                                        ) : SizedBox.shrink(),
-                                    )
-                                    : SizedBox(height: size.height / 55),
-                              SvgPicture.asset(AppIcon.chart_false),
-                              SizedBox(height: size.height / 150),
-                              Text(AppString.Chat, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                            ],
-                          ),
-                        ),
-                      ),
+                      iconsTupe(onTap: () => chatindex(), context: context, indexs: selectindex == 1, text: AppString.Chat, trueicon: AppIcon.chart_true, falseicon: AppIcon.chart_false),
 
                       //home
-                      SizedBox(
-                        width: size.width / 7,
-                        child: Column(
-                          children: [
-                            (selectindex == 2)
-                                  ? SizedBox(
-                                    height: size.height / 55,
-                                    child: (selectindex == 2) ? Column(
-                                      children: [
-                                        Container(
-                                          height: size.height / 180,
-                                          width: size.width / 28,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                              gradient: LinearGradient(
-                                                colors: [AppColor.yellow_color, AppColor.orange_color],
-                                                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                                )),
-                                          ),
-                                          SizedBox(height: size.height / 80),
-                                        ],
-                                      ) : SizedBox.shrink(),
-                                  )
-                                  : SizedBox(height: size.height / 55),
-                            SvgPicture.asset(AppIcon.home_false),
-                            SizedBox(height: size.height / 150),
-                            Text(AppString.Home, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                          ],
-                        ),
-                      ),
+                      iconsTupe(context: context, indexs: selectindex == 2, text: AppString.Home, trueicon: AppIcon.home_false, falseicon: AppIcon.home_false),
 
                       //singnal
-                      SizedBox(
-                        width: size.width / 7,
-                        child: Column(
-                          children: [
-                             (selectindex == 3)
-                                  ? SizedBox(
-                                    height: size.height / 55,
-                                    child: (selectindex == 3) ? Column(
-                                      children: [
-                                        Container(
-                                          height: size.height / 180,
-                                          width: size.width / 28,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                              gradient: LinearGradient(
-                                                colors: [AppColor.yellow_color, AppColor.orange_color],
-                                                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                                )),
-                                          ),
-                                          SizedBox(height: size.height / 80),
-                                        ],
-                                      ) : SizedBox.shrink(),
-                                  )
-                                  : SizedBox(height: size.height / 55),
-                            SvgPicture.asset(AppIcon.singal_false),
-                            SizedBox(height: size.height / 150),
-                            Text(AppString.Signal, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                          ],
-                        ),
-                      ),
+                      iconsTupe(context: context, indexs: selectindex == 3, text: AppString.Signal, trueicon: AppIcon.singal_false, falseicon: AppIcon.singal_false),
 
                       //account
-                      SizedBox(
-                        width: size.width / 7,
-                        child: Column(
-                          children: [
-                             (selectindex == 6)
-                                  ? SizedBox(
-                                    height: size.height / 55,
-                                    child: (selectindex == 6) ? Column(
-                                      children: [
-                                        Container(
-                                          height: size.height / 180,
-                                          width: size.width / 28,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                              gradient: LinearGradient(
-                                                colors: [AppColor.yellow_color, AppColor.orange_color],
-                                                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                                )),
-                                          ),
-                                          SizedBox(height: size.height / 80),
-                                        ],
-                                      ) : SizedBox.shrink(),
-                                  )
-                                  : SizedBox(height: size.height / 55),
-                            SvgPicture.asset(AppIcon.account_flase),
-                            SizedBox(height: size.height / 150),
-                            Text(AppString.Account, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                          ],
-                        ),
-                      ),
+                      iconsTupe(context: context, indexs: selectindex == 4, text: AppString.Account, trueicon: AppIcon.account_flase, falseicon: AppIcon.account_flase),
                     ],
                   ),
                 ),
@@ -244,4 +87,52 @@ class _ChannaleNavigationState extends State<ChannaleNavigation> {
       body: widgetselected(selectindex),
     );
   }
+}
+
+Widget iconsTupe({
+  required BuildContext context,
+  required bool indexs,
+  required String text,
+  required String trueicon,
+  required String falseicon,
+  void Function()? onTap,
+}) {
+  final size = AppSize(context);
+  return SizedBox(
+    width: size.width / 7,
+    child: GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          (indexs) ? SizedBox(
+            height: size.height / 55,
+            child: (indexs) ? Column(
+              children: [
+                Container(
+                  height: size.height / 180, width: size.width / 28,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColor.yellow_color,
+                        AppColor.orange_color
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+                SizedBox(height: size.height / 80),
+              ],
+            ) : SizedBox.shrink(),
+          ) : SizedBox(height: size.height / 55),
+          SvgPicture.asset((indexs) ? trueicon : falseicon),
+          SizedBox(height: size.height / 150),
+          (indexs)
+              ? Shadermask(context: context, text: text)
+              : Text(text, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+        ],
+      ),
+    ),
+  );
 }

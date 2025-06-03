@@ -38,6 +38,7 @@ class AppIcon {
 
   //true
   static const channel_true = 'asset/icon/channel_true.svg';
+  static const chart_true ='asset/icon/chart_true.svg';
 
   //dailytrading Navigation
   //false
