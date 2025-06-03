@@ -53,6 +53,8 @@ dependencies:
   slider_button:
   animated_toggle_switch:
   intl:
+  flutter_speed_dial:
+  persistent_bottom_nav_bar_v2:
 
 dev_dependencies:
   flutter_test:

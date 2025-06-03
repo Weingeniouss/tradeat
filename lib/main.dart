@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: Logo(),
+        home: ChannaleNavigation(),
       ),
     );
   }
