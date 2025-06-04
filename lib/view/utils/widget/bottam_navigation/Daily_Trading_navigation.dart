@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../screen/menu/my_channal/message/message_chat.dart';
 import '../../../screen/menu/my_channal/signal/signal.dart';
 import '../../app_color.dart';
 import '../../app_icon.dart';
@@ -23,6 +24,7 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
 
   List<Widget> selectedscreen = [
     Singnal(),
+    MessageChat(),
   ];
 
   Widget widgetselected(index) {
@@ -32,6 +34,12 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
   void channelindex() {
     setState(() {
       selectindex = 0;
+    });
+  }
+
+  void messageindex(){
+    setState(() {
+      selectindex = 1;
     });
   }
 
@@ -56,133 +64,16 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                   children: [
 
                     //Signal
-                    GestureDetector(
-                      onTap: () => channelindex(),
-                      child: Column(
-                        children: [
-                          (selectindex == 0)
-                              ? Column(
-                                  children: [
-                                    Container(
-                                      height: size.height / 180,
-                                      width: size.width / 28,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              AppColor.yellow_color,
-                                              AppColor.orange_color,
-                                            ],
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                          )),
-                                    ),
-                                    SizedBox(height: size.height / 80),
-                                  ],
-                                )
-                              : SizedBox(height: size.height / 55),
-                          SvgPicture.asset((selectindex == 0) ? AppIcon.Singnal_true : AppIcon.Signal_flase),
-                          SizedBox(height: size.height / 150),
-                          (selectindex == 0)
-                              ? Shadermask(context: context, text: AppString.signal)
-                              : Text(AppString.signal, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                        ],
-                      ),
-                    ),
+                    iconsTupe(onTap: () => channelindex(),context: context, indexs: selectindex == 0, text: AppString.signal, trueicon: AppIcon.Singnal_true, falseicon: AppIcon.Signal_flase),
 
                     //Watchlist
-                    Column(
-                      children: [
-                        (selectindex == 1)
-                            ? Column(
-                                children: [
-                                  Container(
-                                    height: size.height / 180,
-                                    width: size.width / 28,
-                                    decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            AppColor.yellow_color,
-                                            AppColor.orange_color,
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                        )),
-                                  ),
-                                  SizedBox(height: size.height / 80),
-                                ],
-                              )
-                            : SizedBox(height: size.height / 55),
-                        SvgPicture.asset(AppIcon.watchlist_false),
-                        SizedBox(height: size.height / 150),
-                        Text(AppString.Watchlist, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                      ],
-                    ),
+                    iconsTupe(context: context, indexs: selectindex == 2, text: AppString.Watchlist, trueicon: AppIcon.watchlist_false, falseicon: AppIcon.watchlist_false),
 
                     //chart
-                    Column(
-                      children: [
-                        (selectindex == 2)
-                            ? Column(
-                                children: [
-                                  Container(
-                                    height: size.height / 180,
-                                    width: size.width / 28,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            AppColor.yellow_color,
-                                            AppColor.orange_color,
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                        )),
-                                  ),
-                                  SizedBox(height: size.height / 80),
-                                ],
-                              )
-                            : SizedBox(height: size.height / 55),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(AppIcon.chart_false),
-                            SizedBox(height: size.height / 150),
-                            Text(AppString.Message, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                          ],
-                        ),
-                      ],
-                    ),
+                    iconsTupe(onTap: () => messageindex(),context: context, indexs: selectindex == 1, text: AppString.Message, trueicon: AppIcon.chart_true, falseicon: AppIcon.chart_false),
 
                     //singnal
-                    Column(
-                      children: [
-                        (selectindex == 3)
-                            ? Column(
-                                children: [
-                                  Container(
-                                    height: size.height / 180,
-                                    width: size.width / 28,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            AppColor.yellow_color,
-                                            AppColor.orange_color,
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                        )),
-                                  ),
-                                  SizedBox(height: size.height / 80),
-                                ],
-                              )
-                            : SizedBox(height: size.height / 55),
-                        SvgPicture.asset(AppIcon.Account_flase),
-                        SizedBox(height: size.height / 150),
-                        Text(AppString.Members, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
-                      ],
-                    ),
+                    iconsTupe(context: context, indexs: selectindex == 3, text: AppString.Members, trueicon: AppIcon.Account_flase, falseicon: AppIcon.Account_flase),
                   ],
                 ),
               ),
@@ -193,4 +84,53 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
       body: widgetselected(selectindex),
     );
   }
+}
+
+
+Widget iconsTupe({
+  required BuildContext context,
+  required bool indexs,
+  required String text,
+  required String trueicon,
+  required String falseicon,
+  void Function()? onTap,
+}) {
+  final size = AppSize(context);
+  return SizedBox(
+    width: size.width / 6.8,
+    child: GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          (indexs) ? SizedBox(
+            height: size.height / 55,
+            child: (indexs) ? Column(
+              children: [
+                Container(
+                  height: size.height / 180, width: size.width / 28,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColor.yellow_color,
+                        AppColor.orange_color
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+                SizedBox(height: size.height / 80),
+              ],
+            ) : SizedBox.shrink(),
+          ) : SizedBox(height: size.height / 55),
+          SvgPicture.asset((indexs) ? trueicon : falseicon),
+          SizedBox(height: size.height / 150),
+          (indexs)
+              ? Shadermask(context: context, text: text)
+              : Text(text, style: TextStyle(color: AppColor.other_text_color, fontWeight: FontWeight.w600, fontSize: size.width / 35)),
+        ],
+      ),
+    ),
+  );
 }

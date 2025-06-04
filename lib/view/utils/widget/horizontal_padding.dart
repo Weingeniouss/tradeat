@@ -9,3 +9,11 @@ Widget horizontalPadding({BuildContext? context, required Widget child}) {
     child: child,
   );
 }
+
+Widget verticalPadding({BuildContext? context, required Widget child}) {
+  final size = AppSize(context!);
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: size.width / 60),
+    child: child,
+  );
+}

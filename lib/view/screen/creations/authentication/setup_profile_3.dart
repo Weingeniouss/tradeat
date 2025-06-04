@@ -189,11 +189,11 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                                   SizedBox(width: size.width / 50),
                                                   Text(AppString.Bank_Details,
                                                       style: TextStyle(
-                                                          color: (isbankingcontainer)
-                                                              ? AppColor.white_color
-                                                              : AppColor.other_text_color,
-                                                          fontWeight: FontWeight.w500,
-                                                          fontSize: responsivetext.value,
+                                                        color: (isbankingcontainer)
+                                                            ? AppColor.white_color
+                                                            : AppColor.other_text_color,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: responsivetext.value,
                                                       ),
                                                   )
                                                 ],
@@ -234,52 +234,50 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                         ),
                                         AnimatedSwitcher(
                                           duration: Duration(seconds: 1),
-                                          child: (isbankingcontainer)
-                                              ? Column(
-                                                  children: [
-                                                    SizedBox(height: size.height / 80),
-                                                    inputfield(maxLength: 13, keyboardType: TextInputType.number, context: context, hintText: AppString.hintAccount, text: AppString.Account_Number, controller: Account_numbar_controller),
-                                                    SizedBox(height: size.height / 80),
-                                                    inputfield(keyboardType: TextInputType.name, context: context, hintText: AppString.hintAccount_Holder_Name, text: AppString.Account_Holder_Name, controller: Account_holder_name),
-                                                    SizedBox(height: size.height / 80),
-                                                    inputfield(maxLength: 10, context: context, hintText: AppString.hintIFSC_Code, text: AppString.IFSC_Code, controller: IFSC_code_controllr),
-                                                    SizedBox(height: size.height / 80),
-                                                    Button(
-                                                      onTap: () {
-                                                        showDialog(
-                                                            context: context,
-                                                            builder: (BuildContextcontext) {
-                                                              Future.delayed(Duration(seconds: 2), () {
-                                                                Navigator.pop(context);
-                                                                bankVerification();
-                                                                allset = true;
-                                                                isbankingcontainer = false;
-                                                              });
-                                                              return AlertDialog(
-                                                                backgroundColor: AppColor.white_color,
-                                                                elevation: 0,
-                                                                content: Container(
-                                                                  height: size.height / 15,
-                                                                  width: size.width,
-                                                                  decoration: BoxDecoration(color: AppColor.white_color),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Image.asset(AppGif.loader),
-                                                                      SizedBox(width: size.width / 40),
-                                                                      Text(AppString.Please_Wait, style: TextStyle(fontSize: responsivetext.value, fontWeight: FontWeight.w700)),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            });
-                                                      },
+                                          child: (isbankingcontainer) ? Column(
+                                            children: [
+                                              SizedBox(height: size.height / 80),
+                                              inputfield(maxLength: 13, keyboardType: TextInputType.number, context: context, hintText: AppString.hintAccount, text: AppString.Account_Number, controller: Account_numbar_controller),
+                                              SizedBox(height: size.height / 80),
+                                              inputfield(keyboardType: TextInputType.name, context: context, hintText: AppString.hintAccount_Holder_Name, text: AppString.Account_Holder_Name, controller: Account_holder_name),
+                                              SizedBox(height: size.height / 80),
+                                              inputfield(maxLength: 10, context: context, hintText: AppString.hintIFSC_Code, text: AppString.IFSC_Code, controller: IFSC_code_controllr),
+                                              SizedBox(height: size.height / 80),
+                                              Button(
+                                                onTap: () {
+                                                  showDialog(
                                                       context: context,
-                                                      buttonname: AppString.Save,
-                                                      buttoncondition: isFormValid(),
-                                                    ),
-                                                  ],
-                                                )
-                                              : SizedBox(),
+                                                      builder: (BuildContextcontext) {
+                                                        Future.delayed(Duration(seconds: 2), () {
+                                                          Navigator.pop(context);
+                                                          bankVerification();
+                                                          allset = true;
+                                                          isbankingcontainer = false;
+                                                        });
+                                                        return AlertDialog(
+                                                          backgroundColor: AppColor.white_color,
+                                                          elevation: 0,
+                                                          content: Container(
+                                                            height: size.height / 15,
+                                                            width: size.width,
+                                                            decoration: BoxDecoration(color: AppColor.white_color),
+                                                            child: Row(
+                                                              children: [
+                                                                Image.asset(AppGif.loader),
+                                                                SizedBox(width: size.width / 40),
+                                                                Text(AppString.Please_Wait, style: TextStyle(fontSize: responsivetext.value, fontWeight: FontWeight.w700)),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      });
+                                                      },
+                                                context: context,
+                                                buttonname: AppString.Save,
+                                                buttoncondition: isFormValid(),
+                                              ),
+                                            ],
+                                          ) : SizedBox(),
                                         ),
                                       ],
                                     ),

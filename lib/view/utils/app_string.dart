@@ -130,4 +130,10 @@ class AppString {
   static const win = 'WIN';
   static const AVGRETURN = 'AVG. RETURN';
   static const LIVESIGNAL = 'LIVE SIGNAL';
+
+
+  //Message
+  static const Messages = 'Message';
+  static const Write = 'Write Message';
+  static const SearchMembers = 'Search Members, Channel, Signal';
 }

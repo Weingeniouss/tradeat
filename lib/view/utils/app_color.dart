@@ -16,6 +16,7 @@ class AppColor {
   static Color disable_button_color = Color(0xff595959);
   static Color blue_color = Color(0xff55ADFF);
   static Color green_color = Color(0xff77C56B);
+  static Color massage_color = Color(0xff3F92BC);
 
   // Linear Gradient
 

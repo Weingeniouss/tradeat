@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors, unnecessary_import
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors, unnecessary_import, unnecessary_null_comparison
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +173,7 @@ PreferredSizeWidget authenticationChannel({required BuildContext context}) {
   );
 }
 
-PreferredSizeWidget simpaleaapbar(context,{String? text, String? subtext, String? icons}){
+PreferredSizeWidget simpaleaapbar(context,{String? text, String? subtext, String? icons, Widget? subIcons,String? image}){
   final size = AppSize(context);
   return AppBar(
     elevation: 0,
@@ -187,9 +187,15 @@ PreferredSizeWidget simpaleaapbar(context,{String? text, String? subtext, String
             children: [
               (icons != null) ? GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(icons)) : SizedBox(),
               (icons != null) ? SizedBox(width: size.width / 30) :  SizedBox(),
-              Text(text,style: TextStyle(fontSize: size.width / 23,fontWeight: FontWeight.w600,color: AppColor.white_color)),
+              (image != null)
+                  ? CircleAvatar(backgroundImage: AssetImage(image.toString())) : SizedBox(),
+                   (image != null) ? SizedBox(width: size.width / 40) : SizedBox(),
+                   (text != null)
+                    ? Text(text,style: TextStyle(fontSize: size.width / 23,fontWeight: FontWeight.w600,color: AppColor.white_color))
+                    : SizedBox(),
             ],
           ) : GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
+          (subIcons != null) ?  subIcons :
           (subtext != null) ? Shadermask(context: context, text: subtext,fontSize: size.width / 25) : SizedBox(),
         ],
       ),

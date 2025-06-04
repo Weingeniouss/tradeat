@@ -51,4 +51,6 @@ class AppIcon {
   static const Singnal_true = 'asset/icon/signal_true.svg';
 
   static const noData = 'asset/icon/no_data.png';
+  static const send = 'asset/icon/send.svg';
+  static const search = 'asset/icon/search.svg';
 }
