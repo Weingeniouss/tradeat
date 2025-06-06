@@ -1,9 +1,11 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, non_constant_identifier_names, unrelated_type_equality_checks, avoid_print
+// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, non_constant_identifier_names, unrelated_type_equality_checks, avoid_print, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/screen/creations/create_plan/pricing_plan.dart';
 import 'package:tradeat/view/utils/app_color.dart';
+import 'package:tradeat/view/utils/app_contrast.dart';
 import 'package:tradeat/view/utils/app_gif.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
@@ -100,6 +102,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
         return Scaffold(
           appBar: authenticationAppBar(context: context, progress: progressValue),
           bottomNavigationBar: (Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10)
+
+          //Button
               ? Container(
             height: size.height / 10,
                 color: AppColor.black_color,
@@ -108,7 +112,14 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                     context: context,
                     child: Button(onTap: (){
                       if(Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => PricingPlan(), fullscreenDialog: true, maintainState: true, allowSnapshotting: true));
+                        LocalDatabase().setup_profile_thard_save(cardcontroller, cardcontroller_otp, Aadharcontroller, Aadharcardcontroller_otp, Account_numbar_controller, Account_holder_name, IFSC_code_controllr);
+                        Navigator.push(
+                            context, MaterialPageRoute(
+                            builder: (context) => PricingPlan(),
+                            fullscreenDialog: true,
+                            maintainState: true,
+                            allowSnapshotting: true
+                        ));
                       }
                       },context: context, buttonname: AppString.Next,buttoncondition: Aadharcardcontroller_otp.text.length == 4 && cardcontroller_otp.text.length == 4 &&  Aadharcontroller.text.length == 16 && cardcontroller.text.length == 10 && Account_numbar_controller.text.isNotEmpty && Account_numbar_controller.text.length == 13 && Account_holder_name.text.isNotEmpty && IFSC_code_controllr.text.isNotEmpty && IFSC_code_controllr.text.length == 10),
                   ),
@@ -129,6 +140,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(height: size.height / 60),
+
+                          //Pan Verification
                           CardVerification(
                             onTap: () => panVerification(),
                             true_icons: AppIcon.pancard_true,
@@ -141,6 +154,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                             maxLength: 10,
                             buttoncondition: pancardVerification(),
                           ),
+
+                          //Aadhar Verification
                           CardVerification(
                             onTap: () => aadharVerification(),
                             true_icons: AppIcon.pancard_true,
@@ -153,6 +168,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                             maxLength: 16,
                             buttoncondition: Aadharcontroller.text.length == 16,
                           ),
+
+                          //Bank Details
                           GestureDetector(
                             onTap: () {
                               setState(() {

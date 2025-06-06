@@ -5,7 +5,7 @@ class ChannelPermissionState {
   final bool isJoinChannel;
   final List<String> features;
 
-  ChannelPermissionState({this.isPrivate = false, this.isJoinChannel = false, this.features = const []});
+  ChannelPermissionState({this.isPrivate = false, this.isJoinChannel = false, required this.features});
 
   ChannelPermissionState copyWith({
     bool? isPrivate,

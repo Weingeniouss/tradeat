@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/screen/creations/create_plan/channel_Permission.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_string.dart';
@@ -9,7 +10,6 @@ import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/button.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
 import 'package:tradeat/view/utils/widget/profile_container.dart';
-
 import '../../../../controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import '../../../../controller/userInterface/creations/bloc/create_plan/create_channel_bloc.dart';
 import '../../../../controller/userInterface/creations/event/authentication/setup_profile_1_event/setup_mobile_number_event.dart';
@@ -55,12 +55,15 @@ class CreateChannel extends StatelessWidget {
                             return Aboutinputfield(onChanged: (text) {
                               context.read<ProfileBloc>().add(AboutTextChangedEvent(text));
                               context.read<ChannelBloc>().add(AboutingTextChanged(text));
-                            },abouting_controller: abouting_controller,hintText: AppString.hintChannel);
+                            },
+                              abouting_controller: abouting_controller,hintText: AppString.hintChannel,
+                            );
                           },
                           ),
                           SizedBox(height: size.height / 40),
                           Button(onTap: () {
-                            if(state.isValid){
+                            if(state.isValid) {
+                              LocalDatabase().create_channale(Channelcontroller, abouting_controller);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => ChannelPermission()));
                             }
                           },context: context,buttoncondition: state.isValid, buttonname: AppString.Next),

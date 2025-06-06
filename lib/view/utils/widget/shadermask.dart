@@ -5,7 +5,11 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 
 
-Widget Shadermask({required BuildContext context, required String text, double? fontSize}) {
+Widget Shadermask({
+  required BuildContext context,
+  required String text,
+  double? fontSize,
+ }) {
   final size = AppSize(context);
   return ShaderMask(
     shaderCallback: (Rect bounds) {
@@ -20,7 +24,7 @@ Widget Shadermask({required BuildContext context, required String text, double? 
     },
     child: Text(
       text,
-      style: TextStyle(
+       style: TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.w600,
         fontSize: fontSize ?? size.width / 35,

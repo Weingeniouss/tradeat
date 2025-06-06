@@ -1,8 +1,9 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names, unnecessary_null_comparison, unrelated_type_equality_checks, annotate_overrides, prefer_const_constructors_in_immutables, deprecated_member_use, sized_box_for_whitespace, use_build_context_synchronously
+// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, non_constant_identifier_names, unnecessary_null_comparison, unrelated_type_equality_checks, annotate_overrides, prefer_const_constructors_in_immutables, deprecated_member_use, sized_box_for_whitespace, use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/modal/country_state_city.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_3.dart';
 import 'package:tradeat/view/utils/app_color.dart';
@@ -41,10 +42,10 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
   List<dynamic> filteredStates = [];
 
   String citySearchQuery = '';
+  Map<String, dynamic>? selected;
 
   List<Map<String, dynamic>> filteredCities = [];
-  Map<String, dynamic>? selectedCity;
-
+  dynamic selectedCity;
   dynamic selectedCountry;
   dynamic selectedState;
 
@@ -87,8 +88,7 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
         return Scaffold(
           appBar: authenticationAppBar(context: context, progress: state.progressCount.toDouble()),
           body: Container(
-            width: size.width,
-            height: size.height,
+            width: size.width, height: size.height,
             decoration: BoxDecoration(color: AppColor.black_color),
             child: Column(
               children: [
@@ -133,7 +133,8 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
                                     return;
                                   }
 
-                                  filteredStates = List<Map<String, dynamic>>.from(selectedCountry['ProvinceList']);
+                                  filteredStates =
+                                  List<Map<String, dynamic>>.from(selectedCountry['ProvinceList']);
 
                                   final result = await StatePop(context, stateSearchQuery, filteredStates, selectedCountry, selectedState);
                                   if (result != null) {
@@ -152,26 +153,41 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
                               SelectedDropdown(
                                 onTap: () async {
                                   if (selectedState == null) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please select a state first')));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Please select a state first')),
+                                    );
                                     return;
                                   }
 
-                                  final cities = (selectedState!['CityList'] as List).cast<Map<String, dynamic>>();
-
+                                  final cities =
+                                  (selectedState!['CityList'] as List).cast<Map<String, dynamic>>();
                                   String citySearchQuery = '';
                                   List<Map<String, dynamic>> filteredCities = List<Map<String, dynamic>>.from(cities);
-                                  Map<String, dynamic>? selected;
 
+                                  // Open city popup
                                   selected = await CityPop(context, cities, citySearchQuery, filteredCities, selectedCity);
 
                                   if (selected != null) {
                                     setState(() => selectedCity = selected);
-                                    context.read<AddressBloc>().add(SelectCityEvent(selected['CityId']));
+
+                                    // Extract and parse CityId safely
+                                    final cityIdValue = selected?['CityId'];
+                                    final cityId = int.tryParse(cityIdValue.toString());
+
+                                    if (cityId != null) {
+                                      context.read<AddressBloc>().add(SelectCityEvent(cityId));
+                                    } else {
+                                      print('❌ Error: CityId is not a valid integer: $cityIdValue');
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text('Invalid CityId format')),
+                                      );
+                                      return;
+                                    }
                                   }
                                 },
                                 context: context,
                                 text: selectedCity?['CityName'] ?? AppString.Select_city,
-                                condition: selectedState != null,
+                                condition: selectedCity != null,
                                 heding: AppString.Select_city,
                               ),
 
@@ -196,6 +212,7 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
                               Button(
                                 onTap: () {
                                   if (state.countryProgressUpdated && state.stateProgressUpdated && state.cityProgressUpdated && state.addressOneUpdated && state.addressTwoUpdated) {
+                                    callsentdata_local(selectedCountry, selectedState, selected, addressOneController, addressTwoController);
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => SetupProfile_thard()));
                                   }
                                 },
@@ -218,6 +235,14 @@ class _SetupProfile_scecondState extends State<SetupProfile_scecond> {
   }
 }
 
+void callsentdata_local(selectedCountry,selectedState,selected,addressOneController,addressTwoController){
+  LocalDatabase().country(selectedCountry);
+  LocalDatabase().state(selectedState);
+  LocalDatabase().city(selected);
+  LocalDatabase().addressone(addressOneController.text);
+  LocalDatabase().addresstwo(addressTwoController.text);
+}
+
 Future<Map<String, dynamic>?> Countrypop(
   BuildContext context,
   String countrySearchQuery,
@@ -233,102 +258,117 @@ Future<Map<String, dynamic>?> Countrypop(
       return BlocBuilder<AddressBloc, AddressState>(
         builder: (BuildContext context, AddressState state) {
           return AlertDialog(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(AppString.Select_Country, style: TextStyle(color: AppColor.white_color, fontSize: size.width / 22)),
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: SvgPicture.asset(AppIcon.cancel),
-              ),
-            ],
-          ),
-          backgroundColor: AppColor.textfield_color,
-          elevation: 0,
-          content: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setState) {
-              return Container(
-                width: size.width, height: size.height / 1.7,
-                decoration: BoxDecoration(color: AppColor.textfield_color),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        child: Center(
-                          child: TextField(
-                            onChanged: (value) {
-                              setState(() {
-                                countrySearchQuery = value.toLowerCase();
-                                filteredCountries = select_address.where((country) {
-                                  return country['Country'].toLowerCase().contains(countrySearchQuery);
-                                }).toList();
-                              });
-                            },
-                            style: TextStyle(color: AppColor.white_color),
-                            decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
-                              disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
-                              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
-                              hintText: AppString.Search,
-                              hintStyle: TextStyle(color: AppColor.gray_color),
-                              suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppString.Select_Country, style: TextStyle(color: AppColor.white_color, fontSize: size.width / 22)),
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: SvgPicture.asset(AppIcon.cancel),
+                ),
+              ],
+            ),
+            backgroundColor: AppColor.textfield_color,
+            elevation: 0,
+            content: StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) setState) {
+                return Container(
+                  width: size.width,
+                  height: size.height / 1.7,
+                  decoration: BoxDecoration(color: AppColor.textfield_color),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          child: Center(
+                            child: TextField(
+                              onChanged: (value) {
+                                setState(() {
+                                  countrySearchQuery = value.toLowerCase();
+                                  filteredCountries = select_address.where((country) {
+                                    return country['Country'].toLowerCase().contains(countrySearchQuery);
+                                  }).toList();
+                                });
+                              },
+                              style: TextStyle(color: AppColor.white_color),
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: AppColor.other_text_color),
+                                  borderRadius: BorderRadius.circular(size.width / 25),
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: AppColor.other_text_color),
+                                  borderRadius: BorderRadius.circular(size.width / 25),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: AppColor.other_text_color),
+                                  borderRadius: BorderRadius.circular(size.width / 25),
+                                ),
+                                hintText: AppString.Search,
+                                hintStyle: TextStyle(color: AppColor.gray_color),
+                                suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: size.height / 30),
-                      SizedBox(
-                        height: size.height / 2.8,
-                        child: ListView.builder(
-                          itemCount: filteredCountries.length,
-                          itemBuilder: (BuildContextcontext, int index) {
-                            final country = filteredCountries[index];
-                            bool isSelected = selected != null && selected?['Country'] == country['Country'];
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() => selected = country);
-                                selected = country;
-                                context.read<AddressBloc>().add(SelectCountryEvent(index));
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                height: size.height / 20, width: size.width,
-                                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    (isSelected) ? Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          filteredCountries[index]['Country'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            foreground: Paint()..shader = LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [AppColor.yellow_color, AppColor.orange_color],
-                                            ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
-                                          ),
-                                        ),
-                                        SvgPicture.asset(AppIcon.chake),
-                                      ],
-                                    ) : Text(filteredCountries[index]['Country'], style: TextStyle(color: AppColor.white_color)),
-                                  ],
+                        SizedBox(height: size.height / 30),
+                        SizedBox(
+                          height: size.height / 2.8,
+                          child: ListView.builder(
+                            itemCount: filteredCountries.length,
+                            itemBuilder: (BuildContextcontext, int index) {
+                              final country = filteredCountries[index];
+                              bool isSelected = selected != null && selected?['Country'] == country['Country'];
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() => selected = country);
+                                  selected = country;
+                                  context.read<AddressBloc>().add(SelectCountryEvent(index));
+                                  Navigator.pop(context);
+                                },
+                                child: Container(
+                                  height: size.height / 20, width: size.width,
+                                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      (isSelected)
+                                          ? Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  filteredCountries[index]['Country'],
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    foreground: Paint()..shader = LinearGradient(
+                                                        begin: Alignment.topCenter,
+                                                        end: Alignment.bottomCenter,
+                                                        colors: [
+                                                          AppColor.yellow_color,
+                                                          AppColor.orange_color
+                                                        ],
+                                                      ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
+                                                  ),
+                                                ),
+                                                SvgPicture.asset(AppIcon.chake),
+                                              ],
+                                            )
+                                          : Text(filteredCountries[index]['Country'], style: TextStyle(color: AppColor.white_color)),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
-        );
+                );
+              },
+            ),
+          );
         },
       );
     },
@@ -347,7 +387,7 @@ Future<Map<String, dynamic>?> StatePop(
   final size = AppSize(context);
   Map<String, dynamic>? selected;
 
-    bool hasDispatched = false;
+  bool hasDispatched = false;
 
   await showDialog(
     context: context,
@@ -355,105 +395,113 @@ Future<Map<String, dynamic>?> StatePop(
       return BlocBuilder<AddressBloc, AddressState>(
         builder: (BuildContext context, AddressState state) {
           return AlertDialog(
-          backgroundColor: AppColor.textfield_color,
-          elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(AppString.Select_State, style: TextStyle(color: AppColor.white_color, fontSize: size.width / 22)),
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: SvgPicture.asset(AppIcon.cancel),
-              ),
-            ],
-          ),
-          content: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setState) {
-              return Container(
-                height: size.height / 2,
-                width: size.width,
-                decoration: BoxDecoration(color: AppColor.textfield_color),
-                child: Column(
-                  children: [
-                    TextField(
-                      onChanged: (value) {
-                        setState(() {
-                          stateSearchQuery = value.toLowerCase();
-                          filteredStates = (selectedCountry['ProvinceList'] as List).cast<Map<String, dynamic>>().where((state) => (state['Name']?.toLowerCase() ?? '').contains(stateSearchQuery)).toList();
-                        });
-                      },
-                      style: TextStyle(color: AppColor.white_color),
-                      decoration: InputDecoration(
-                        hintText: AppString.Search,
-                        hintStyle: TextStyle(color: AppColor.gray_color),
-                        suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
-                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
-                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
+            backgroundColor: AppColor.textfield_color,
+            elevation: 0,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppString.Select_State, style: TextStyle(color: AppColor.white_color, fontSize: size.width / 22)),
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: SvgPicture.asset(AppIcon.cancel),
+                ),
+              ],
+            ),
+            content: StatefulBuilder(
+              builder: (BuildContext context, void Function(void Function()) setState) {
+                return Container(
+                  height: size.height / 2,
+                  width: size.width,
+                  decoration: BoxDecoration(color: AppColor.textfield_color),
+                  child: Column(
+                    children: [
+                      TextField(
+                        onChanged: (value) {
+                          setState(() {
+                            stateSearchQuery = value.toLowerCase();
+                            filteredStates = (selectedCountry['ProvinceList'] as List).cast<Map<String, dynamic>>().where((state) => (state['Name']?.toLowerCase() ?? '').contains(stateSearchQuery)).toList();
+                          });
+                        },
+                        style: TextStyle(color: AppColor.white_color),
+                        decoration: InputDecoration(
+                          hintText: AppString.Search,
+                          hintStyle: TextStyle(color: AppColor.gray_color),
+                          suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColor.other_text_color),
+                            borderRadius: BorderRadius.circular(size.width / 25),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: AppColor.other_text_color),
+                            borderRadius: BorderRadius.circular(size.width / 25),
+                          ),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: size.height / 30),
-                    SizedBox(
-                      height: size.height / 2.8,
-                      child: ListView.builder(
-                        itemCount: filteredStates.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final state = filteredStates[index];
-                          bool isSelected = selectedState != null && selectedState['Name'] == state['Name'];
-                          return GestureDetector(
-                            onTap: () {
-                              if (selected == null || selected!['Name'] != state['Name']) {
-                                setState(() => selectedState = state);
-                                selected = state;
-                                if(!hasDispatched){
-                                  context.read<AddressBloc>().add(SelectStateEvent(index));
-                                  hasDispatched = true;
+                      SizedBox(height: size.height / 30),
+                      SizedBox(
+                        height: size.height / 2.8,
+                        child: ListView.builder(
+                          itemCount: filteredStates.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final state = filteredStates[index];
+                            bool isSelected = selectedState != null && selectedState['Name'] == state['Name'];
+                            return GestureDetector(
+                              onTap: () {
+                                if (selected == null || selected!['Name'] != state['Name']) {
+                                  setState(() => selectedState = state);
+                                  selected = state;
+                                  if (!hasDispatched) {
+                                    context.read<AddressBloc>().add(SelectStateEvent(index));
+                                    hasDispatched = true;
+                                  }
+                                  Navigator.pop(context);
                                 }
-                                Navigator.pop(context);
-                             }
-                            },
-                            child: Container(
-                              height: size.height / 20, width: size.width,
-                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  (isSelected)
-                                      ? Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              state['Name'],
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                foreground: Paint()..shader = LinearGradient(
-                                                    colors: [
-                                                      AppColor.yellow_color,
-                                                      AppColor.orange_color
-                                                    ],
-                                                    begin: Alignment.topCenter,
-                                                    end: Alignment.bottomCenter,
-                                                  ).createShader(Rect.fromLTWH(0, 0, 200, 70),
+                              },
+                              child: Container(
+                                height: size.height / 20,
+                                width: size.width,
+                                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    (isSelected)
+                                        ? Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                state['Name'],
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  foreground: Paint()..shader = LinearGradient(
+                                                      colors: [
+                                                        AppColor.yellow_color,
+                                                        AppColor.orange_color
+                                                      ],
+                                                      begin: Alignment.topCenter,
+                                                      end: Alignment.bottomCenter,
+                                                    ).createShader(
+                                                      Rect.fromLTWH(0, 0, 200, 70),
+                                                    ),
                                                 ),
                                               ),
-                                            ),
-                                            SvgPicture.asset(AppIcon.chake),
-                                          ],
-                                        )
-                                      : Text(state['Name'], style: TextStyle(color: AppColor.white_color)),
-                                ],
+                                              SvgPicture.asset(AppIcon.chake),
+                                            ],
+                                          )
+                                        : Text(state['Name'], style: TextStyle(color: AppColor.white_color)),
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-        );
+                    ],
+                  ),
+                );
+              },
+            ),
+          );
         },
       );
     },
@@ -462,12 +510,16 @@ Future<Map<String, dynamic>?> StatePop(
   return selected;
 }
 
-
-Future<Map<String, dynamic>?> CityPop(BuildContext context, List<dynamic> cities, String citySearchQuery,List<Map<String, dynamic>> filteredCities,Map<String, dynamic>? selectedCity) async {
+Future<Map<String, dynamic>?> CityPop(
+  BuildContext context,
+  List<dynamic> cities,
+  String citySearchQuery,
+  List<Map<String, dynamic>> filteredCities,
+  Map<String, dynamic>? selectedCity,
+) async {
   final size = AppSize(context);
 
   bool hasDispatched = false;
-
 
   filteredCities = List<Map<String, dynamic>>.from(cities);
   return await showDialog(
@@ -487,84 +539,96 @@ Future<Map<String, dynamic>?> CityPop(BuildContext context, List<dynamic> cities
       content: BlocBuilder<AddressBloc, AddressState>(
         builder: (BuildContext context, AddressState state) {
           return StatefulBuilder(
-          builder: (context, setState) {
-            return Container(
-              width: size.width, height: size.height / 1.7,
-              child: Column(
-                children: [
-                  TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        citySearchQuery = value.toLowerCase();
-                        filteredCities = List<Map<String, dynamic>>.from(cities)
-                          .where((city) => (city['CityName']?.toLowerCase() ?? '').contains(citySearchQuery)).toList();
-                      });
-                    },
-                    style: TextStyle(color: AppColor.white_color),
-                    decoration: InputDecoration(
-                      hintText: AppString.Search,
-                      hintStyle: TextStyle(color: AppColor.gray_color),
-                      suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
-                      enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
-                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColor.other_text_color), borderRadius: BorderRadius.circular(size.width / 25)),
+            builder: (context, setState) {
+              return Container(
+                width: size.width,
+                height: size.height / 1.7,
+                child: Column(
+                  children: [
+                    TextField(
+                      onChanged: (value) {
+                        setState(() {
+                          citySearchQuery = value.toLowerCase();
+                          filteredCities = List<Map<String, dynamic>>.from(cities).where((city) => (city['CityName']?.toLowerCase() ?? '').contains(citySearchQuery)).toList();
+                        });
+                      },
+                      style: TextStyle(color: AppColor.white_color),
+                      decoration: InputDecoration(
+                        hintText: AppString.Search,
+                        hintStyle: TextStyle(color: AppColor.gray_color),
+                        suffixIcon: Icon(Icons.search, color: AppColor.gray_color),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColor.other_text_color),
+                          borderRadius: BorderRadius.circular(size.width / 25),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColor.other_text_color),
+                          borderRadius: BorderRadius.circular(size.width / 25),
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height / 2.8,
-                    child: ListView.builder(
-                      itemCount: filteredCities.length,
-                      itemBuilder: (context, index) {
-                         final city = filteredCities[index];
-                         bool isSelected = selectedCity != null && selectedCity!['CityId'] == city['CityId'];
-                        return GestureDetector(
-                          onTap: () {
-                            setState((){
-                              if(!hasDispatched){
-                                context.read<AddressBloc>().add(SelectCityEvent(index));
-                                hasDispatched = true;
-                              }
+                    SizedBox(
+                      height: size.height / 2.8,
+                      child: ListView.builder(
+                        itemCount: filteredCities.length,
+                        itemBuilder: (context, index) {
+                          final city = filteredCities[index];
+                          bool isSelected = selectedCity != null && selectedCity!['CityId'] == city['CityId'];
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (!hasDispatched) {
+                                  context.read<AddressBloc>().add(SelectCityEvent(index));
+                                  hasDispatched = true;
+                                }
                                 selectedCity = city;
                                 Navigator.pop(context, selectedCity);
                               });
                             },
-                          child: Container(
-                            height: size.height / 20, width: size.width,
-                            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                (isSelected) ? Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      city['CityName'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        foreground: Paint()..shader = LinearGradient(
-                                          colors: [
-                                            AppColor.yellow_color, AppColor.orange_color
+                            child: Container(
+                              height: size.height / 20,
+                              width: size.width,
+                              decoration: BoxDecoration(border: Border(bottom: BorderSide(color: AppColor.gray_color))),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  (isSelected)
+                                      ? Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              city['CityName'],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                foreground: Paint()..shader = LinearGradient(
+                                                    colors: [
+                                                      AppColor.yellow_color,
+                                                      AppColor.orange_color
+                                                    ],
+                                                    begin: Alignment.topCenter,
+                                                    end: Alignment.bottomCenter,
+                                                  ).createShader(
+                                                    Rect.fromLTWH(0, 0, 200, 70),
+                                                  ),
+                                              ),
+                                            ),
+                                            SvgPicture.asset(AppIcon.chake),
                                           ],
-                                          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                        ).createShader(Rect.fromLTWH(0, 0, 200, 70),
-                                        ),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(AppIcon.chake),
-                                  ],
-                                ) :Text(city['CityName'], style: TextStyle(color: AppColor.white_color)),
-                              ],
+                                        )
+                                      : Text(city['CityName'], style: TextStyle(color: AppColor.white_color)),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
+                  ],
+                ),
+              );
+            },
+          );
         },
       ),
     ),

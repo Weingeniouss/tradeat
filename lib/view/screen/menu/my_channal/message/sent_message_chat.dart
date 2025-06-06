@@ -62,6 +62,8 @@ class _SentMessageChatState extends State<SentMessageChat> {
           decoration: BoxDecoration(color: AppColor.black_color),
           child: Column(
             children: [
+
+              //List of Massage
               Expanded(
                 flex: 5, child: horizontalPadding(
                   context: context,
@@ -96,6 +98,8 @@ class _SentMessageChatState extends State<SentMessageChat> {
                   ),
                 ),
               ),
+
+              //Input of Massage
               Expanded(
                 flex: 1, child: Container(
                   width: size.width, height: size.height / 10,
@@ -115,6 +119,7 @@ class _SentMessageChatState extends State<SentMessageChat> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: size.width / 25),
                               child: TextField(
+                                cursorColor: AppColor.white_color,
                                 controller: massageset,
                                 style: TextStyle(color: AppColor.white_color),
                                 decoration: InputDecoration(

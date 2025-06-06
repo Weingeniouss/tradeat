@@ -97,6 +97,8 @@ class _MessageChatState extends State<MessageChat> {
                 context: context,
                 child: Column(
                   children: [
+
+                    //Sarch of Membars
                     SizedBox(height: size.height / 50),
                     Container(
                       width: size.width, height: size.height / 15,
@@ -105,6 +107,7 @@ class _MessageChatState extends State<MessageChat> {
                         padding: EdgeInsets.all(8.0),
                         child: Center(
                           child: TextField(
+                            cursorColor: AppColor.white_color,
                             controller: Searchmassage,
                             onChanged: (value) => onSearchChanged(value),
                             style: TextStyle(color: AppColor.white_color),
@@ -124,6 +127,8 @@ class _MessageChatState extends State<MessageChat> {
                       ),
                     ),
                     SizedBox(height: size.height / 50),
+
+                    //List of Mambar
                     Expanded(
                       child: ListView.builder(
                         itemCount: filteredChat.length,
@@ -138,8 +143,6 @@ class _MessageChatState extends State<MessageChat> {
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(vertical: size.width / 40),
-                              width: size.width / 20,
-                              height: size.height / 10,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadiusDirectional.circular(size.width / 25),
                                 color: AppColor.textfield_color,

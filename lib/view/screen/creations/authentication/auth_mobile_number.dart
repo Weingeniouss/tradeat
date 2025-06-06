@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unnecessary_import, must_be_immutable, prefer_const_constructors_in_immutables, avoid_print
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, unnecessary_import, must_be_immutable, prefer_const_constructors_in_immutables, avoid_print, unnecessary_brace_in_string_interps
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +11,7 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
+import '../../../../controller/database/loacl_store/local.dart';
 import '../../../../controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import '../../../../controller/userInterface/creations/event/authentication/auth_mobile_number_controller/auth_mobile_number__event.dart';
 import '../../../../controller/userInterface/creations/state/authentication/auth_Mobile_number_stateController/auth_Mobile_number_stateController.dart';
@@ -177,6 +178,7 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                               onTap: () {
                                 String rawNumber = maskFormatter.getUnmaskedText();
                                 if (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12) {
+                                  LocalDatabase().mobileauthenticationnumber(rawNumber);
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => MobileOtp(number: rawNumber, countrycode: state.selectedDialCode)));
                                 }
                               },

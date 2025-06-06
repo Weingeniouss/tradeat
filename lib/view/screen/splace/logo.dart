@@ -9,7 +9,9 @@ import 'package:tradeat/view/utils/app_image.dart';
 import 'package:tradeat/view/utils/app_logo.dart';
 import '../../../controller/userInterface/creations/bloc/splash/logo_controller_bloc/logo_bloc.dart';
 import '../../../controller/userInterface/creations/state/splash/logo_controller_state/logo_state.dart';
+import '../../utils/app_contrast.dart';
 import '../../utils/widget/app_size.dart';
+import '../../utils/widget/bottam_navigation/channale_navigation.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key});
@@ -20,7 +22,7 @@ class Logo extends StatelessWidget {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (BuildContext context, state) {
         if (state is SplashNavigate) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AuthMobileNumber()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (islogin) ? ChannaleNavigation() : AuthMobileNumber()));
         }
       },
       builder: (BuildContext context, state) {

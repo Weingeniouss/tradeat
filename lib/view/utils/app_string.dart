@@ -136,4 +136,26 @@ class AppString {
   static const Messages = 'Message';
   static const Write = 'Write Message';
   static const SearchMembers = 'Search Members, Channel, Signal';
+
+  //Dashboard
+  static const Dashboard = 'Dashboard';
+
+  //Singnal
+  static const Signals = 'Signal';
+
+  //Account
+  static const account = 'Account';
+  static const DoMore = 'Do More With TradeAT';
+  static const Tax = 'Tax Report';
+  static const Preferences = 'Preferences';
+  static const MyHighlights = 'My Highlights';
+  static const FixedIncome = 'Fixed Income';
+  static const AccountDetails = 'Account Details';
+  static const MyTradeATProfile = 'My TradeAT Profile';
+  static const LinkedBankAccount = 'Linked Bank Account';
+  static const DeviceManager = 'Device Manager';
+  static const FamilyAccount = 'Family Account';
+  static const Settings = 'Settings';
+  static const PoliciesAgreements = 'Policies & Agreements';
+  static const Logout = 'Logout';
 }

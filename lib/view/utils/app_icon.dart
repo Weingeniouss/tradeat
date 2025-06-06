@@ -38,7 +38,10 @@ class AppIcon {
 
   //true
   static const channel_true = 'asset/icon/channel_true.svg';
-  static const chart_true ='asset/icon/chart_true.svg';
+  static const chart_true = 'asset/icon/chart_true.svg';
+  static const home_true = 'asset/icon/home_true.svg';
+  static const signal = 'asset/icon/signal.svg';
+  static const account_true = 'asset/icon/account.svg';
 
   //dailytrading Navigation
   //false
@@ -53,4 +56,15 @@ class AppIcon {
   static const noData = 'asset/icon/no_data.png';
   static const send = 'asset/icon/send.svg';
   static const search = 'asset/icon/search.svg';
+
+  //Account
+  static const logout = 'asset/icon/logout.svg';
+  static const familyaccount = 'asset/icon/familyaccount.svg';
+  static const fixedincome = 'asset/icon/fixedincome.svg';
+  static const linkedbankaccount = 'asset/icon/linkedbankaccount.svg';
+  static const myHighlights = 'asset/icon/myHighlights.svg';
+  static const myTradeATprofile = 'asset/icon/myTradeATprofile.svg';
+  static const policies_agreements = 'asset/icon/policies_agreements.svg';
+  static const taxreport ='asset/icon/taxreport.svg';
+  static const setting = 'asset/icon/settings.svg';
 }

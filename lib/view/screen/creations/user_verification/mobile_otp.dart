@@ -1,11 +1,13 @@
-// ignore_for_file: unnecessary_brace_in_string_interps, prefer_const_constructors
+// ignore_for_file: unnecessary_brace_in_string_interps, prefer_const_constructors, avoid_print, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_1.dart';
 import 'package:tradeat/view/utils/app_color.dart';
+import 'package:tradeat/view/utils/app_contrast.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
@@ -113,6 +115,8 @@ class _MobileOtpState extends State<MobileOtp> {
                     textStyle: TextStyle(color: AppColor.white_color, fontSize: 17),
                     onChanged: (value) {
                       if (value.length == 6) {
+                        final String otp = otpController.text;
+                        LocalDatabase().mobileOtp(otp);
                         Navigator.push(context, MaterialPageRoute(builder: (_) => SetupProfile_frist()));
                       }
                     },

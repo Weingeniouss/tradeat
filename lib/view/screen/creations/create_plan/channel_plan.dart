@@ -6,8 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/modal/days.dart';
 import 'package:tradeat/view/utils/app_color.dart';
+import 'package:tradeat/view/utils/app_contrast.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
@@ -56,8 +58,7 @@ class ChannelPlan extends StatelessWidget {
         return Scaffold(
         appBar: simpaleaapbar(context),
         bottomNavigationBar: Container(
-          height: size.height / 10,
-          width: size.width,
+          height: size.height / 10, width: size.width,
           decoration: BoxDecoration(color: AppColor.black_color),
           child: Column(
             children: [
@@ -67,7 +68,14 @@ class ChannelPlan extends StatelessWidget {
                   child: Button(
                     onTap: (){
                       if(planAmountController.text.isNotEmpty && offerPriceController.text.isNotEmpty && state.selectedDuration != null && state.selectedDuration!.isNotEmpty) {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ShowValue(valuemark: planAmountController.text)));
+                        LocalDatabase().channalePlan(planAmountController, offerPriceController,selectedDuration: state.selectedDuration,selectedDurationSecond: state.selectedDurationSecond);
+                         Navigator.push(
+                           context, MaterialPageRoute(
+                            builder: (context) {
+                              return ShowValue(valuemark: planAmountController.text);
+                            },
+                          ),
+                        );
                       }
                     },
                     context: context,
@@ -79,13 +87,12 @@ class ChannelPlan extends StatelessWidget {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            width: size.width,
-            height: size.height,
-            decoration: BoxDecoration(color: AppColor.black_color),
-            child: horizontalPadding(
-              context: context,
+        body: Container(
+          width: size.width, height: size.height,
+          decoration: BoxDecoration(color: AppColor.black_color),
+          child: horizontalPadding(
+            context: context,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(height: size.height / 50),
@@ -104,14 +111,19 @@ class ChannelPlan extends StatelessWidget {
                               Text(AppString.Channel_Plan, style: TextStyle(color: AppColor.white_color, fontWeight: FontWeight.w600, fontSize: size.width / 23)),
                               SizedBox(height: size.height / 50),
                               inputfield(
-                                inputFormatters : [TextInputFormatter.withFunction(formatEditUpdate)],
+                                inputFormatters : [
+                                  TextInputFormatter.withFunction(formatEditUpdate),
+                                ],
                                 context: context,
                                 hintText: AppString.hintpalnammount,
                                 text: AppString.Plan_Amount,
                                 controller: planAmountController,
                                 keyboardType: TextInputType.number,
                               ),
-                              inputfield(inputFormatters : [TextInputFormatter.withFunction(formatEditUpdate)],
+                              inputfield(
+                                inputFormatters : [
+                                  TextInputFormatter.withFunction(formatEditUpdate),
+                                ],
                                 context: context,
                                 hintText: AppString.hintofferprice,
                                 text: AppString.Offer_Price,

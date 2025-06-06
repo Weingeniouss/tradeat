@@ -1,8 +1,9 @@
-// ignore_for_file: camel_case_types, non_constant_identifier_names, unused_local_variable, prefer_const_constructors, must_be_immutable
+// ignore_for_file: camel_case_types, non_constant_identifier_names, unused_local_variable, prefer_const_constructors, must_be_immutable, avoid_print, unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/screen/creations/authentication/setup_profile_2.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
@@ -72,6 +73,7 @@ class SetupProfile_frist extends StatelessWidget {
                               Button(
                               onTap: () {
                                 if(state.isNameAdded == true && state.isEmailAdded == true && state.isAboutAdded == true && state.isPhotoAdded == true){
+                                  LocalDatabase().setup_profile_one(fullname_controller, email_controller, about_controller);
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => SetupProfile_scecond()));
                                    }
                                  }, context: context, buttoncondition: state.isNameAdded == true && state.isEmailAdded == true && state.isAboutAdded == true && state.isPhotoAdded == true

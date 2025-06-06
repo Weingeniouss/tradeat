@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
@@ -23,15 +24,26 @@ class ShowValue extends StatelessWidget {
     return Scaffold(
       appBar: simpaleaapbar(context),
       bottomNavigationBar: Container(
-        height: size.height / 10, color: AppColor.black_color,
+        height: size.height / 10,
+        color: AppColor.black_color,
         child: Column(
           children: [
             horizontalPadding(
               child: Button(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChannaleNavigation()));
-                  },
-                  context: context, buttonname: AppString.Next, buttoncondition: true), context: context,
+                onTap: () {
+                  LocalDatabase().isLogins();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return ChannaleNavigation();
+                    }),
+                  );
+                },
+                context: context,
+                buttonname: AppString.Next,
+                buttoncondition: true,
+              ),
+              context: context,
             )
           ],
         ),

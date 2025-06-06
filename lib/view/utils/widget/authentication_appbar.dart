@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/utils/widget/bottam_navigation/channale_navigation.dart';
 import 'package:tradeat/view/utils/widget/shadermask.dart';
 import '../app_color.dart';
+import '../app_contrast.dart';
 import '../app_icon.dart';
 import '../app_string.dart';
 import '../responsive.dart';
@@ -138,6 +140,7 @@ PreferredSizeWidget authenticationChannel({required BuildContext context}) {
                   GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(AppIcon.left)),
                    GestureDetector(
                      onTap: () {
+                       LocalDatabase().isLogins();
                        Get.offAll(() => ChannaleNavigation());
                      },
                      child: Container(

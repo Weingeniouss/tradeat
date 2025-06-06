@@ -63,6 +63,8 @@ class _SentMessageState extends State<SentMessage> {
           decoration: BoxDecoration(color: AppColor.black_color),
           child: Column(
             children: [
+
+              //List of show Message
               Expanded(
                 flex: 5, child: horizontalPadding(
                   context: context,
@@ -97,6 +99,8 @@ class _SentMessageState extends State<SentMessage> {
                   ),
                 ),
               ),
+
+              //InputMassage
               Expanded(
                 flex: 1, child: Container(
                   width: size.width, height: size.height / 10,
@@ -116,6 +120,7 @@ class _SentMessageState extends State<SentMessage> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: size.width / 25),
                               child: TextField(
+                                cursorColor: AppColor.white_color,
                                 controller: massageset,
                                 style: TextStyle(color: AppColor.white_color),
                                 decoration: InputDecoration(

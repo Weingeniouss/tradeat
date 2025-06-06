@@ -77,8 +77,6 @@ class _ChartState extends State<Chart> {
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: size.width / 40),
-                    width: size.width / 20,
-                    height: size.height / 10,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(size.width / 25),
                       color: AppColor.textfield_color,
