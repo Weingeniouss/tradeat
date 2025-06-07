@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../screen/menu/my_channal/membars/membars.dart';
 import '../../../screen/menu/my_channal/message/message_chat.dart';
 import '../../../screen/menu/my_channal/signal/signal.dart';
 import '../../app_color.dart';
@@ -25,6 +26,7 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
   List<Widget> selectedscreen = [
     Singnal(),
     MessageChat(),
+    Membars(),
   ];
 
   Widget widgetselected(index) {
@@ -40,6 +42,12 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
   void messageindex(){
     setState(() {
       selectindex = 1;
+    });
+  }
+
+  void membarsindex(){
+    setState(() {
+      selectindex = 2;
     });
   }
 
@@ -64,16 +72,43 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
                   children: [
 
                     //Signal
-                    iconsTupe(onTap: () => channelindex(),context: context, indexs: selectindex == 0, text: AppString.signal, trueicon: AppIcon.Singnal_true, falseicon: AppIcon.Signal_flase),
+                    iconsTupe(
+                      onTap: () => channelindex(),
+                      context: context,
+                      indexs: selectindex == 0,
+                      text: AppString.signal,
+                      trueicon: AppIcon.Singnal_true,
+                      falseicon: AppIcon.Signal_flase,
+                    ),
 
                     //Watchlist
-                    iconsTupe(context: context, indexs: selectindex == 2, text: AppString.Watchlist, trueicon: AppIcon.watchlist_false, falseicon: AppIcon.watchlist_false),
+                    iconsTupe(
+                      context: context,
+                      indexs: selectindex == 3,
+                      text: AppString.Watchlist,
+                      trueicon: AppIcon.watchlist_false,
+                      falseicon: AppIcon.watchlist_false,
+                    ),
 
                     //chart
-                    iconsTupe(onTap: () => messageindex(),context: context, indexs: selectindex == 1, text: AppString.Message, trueicon: AppIcon.chart_true, falseicon: AppIcon.chart_false),
+                    iconsTupe(
+                      onTap: () => messageindex(),
+                      context: context,
+                      indexs: selectindex == 1,
+                      text: AppString.Message,
+                      trueicon: AppIcon.chart_true,
+                      falseicon: AppIcon.chart_false,
+                    ),
 
                     //singnal
-                    iconsTupe(context: context, indexs: selectindex == 3, text: AppString.Members, trueicon: AppIcon.Account_flase, falseicon: AppIcon.Account_flase),
+                    iconsTupe(
+                      onTap: () => membarsindex(),
+                      context: context,
+                      indexs: selectindex == 2,
+                      text: AppString.Members,
+                      trueicon: AppIcon.account_true,
+                      falseicon: AppIcon.Account_flase,
+                    ),
                   ],
                 ),
               ),

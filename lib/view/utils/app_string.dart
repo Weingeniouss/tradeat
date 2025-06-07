@@ -40,9 +40,9 @@ class AppString {
   static const subhedingSetup = 'Set up your profile to get started.';
   static const profile = 'Profile Photo';
   static const name = 'Full Name';
-  static const hint_name = 'Enater Full Name';
+  static const hint_name = 'Enter Full Name';
   static const Email = 'Email Address';
-  static const hint_Email = 'Enater Email Address';
+  static const hint_Email = 'Enter Email Address';
   static const About_You = 'About You';
 
   //Setup Profile Second
@@ -158,4 +158,10 @@ class AppString {
   static const Settings = 'Settings';
   static const PoliciesAgreements = 'Policies & Agreements';
   static const Logout = 'Logout';
+
+  //Membars
+  static const membars = 'Membar';
+  static const ActiveUser = 'Active User';
+  static const NewUser = 'New User';
+  static const BlockUser = 'Block User';
 }

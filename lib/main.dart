@@ -33,6 +33,11 @@ import 'view/utils/widget/bottam_navigation/channale_navigation.dart';
 
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
+
+   ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Center(child: Text("Error: ${details.exception}"));
+  };
+
    pref = await SharedPreferences.getInstance();
 
    //Mobile Number Authntication
