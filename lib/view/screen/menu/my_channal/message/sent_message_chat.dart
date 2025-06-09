@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tradeat/view/utils/widget/loder.dart';
@@ -31,13 +33,16 @@ class _SentMessageChatState extends State<SentMessageChat> {
   List<String>allmassage = [];
 
   void setmassageval() {
+  String msg = massageset.text.replaceAll(RegExp(r'\s+'), '');
+  if (msg.isNotEmpty) {
     setState(() {
-      if (massageset.text.trim().isNotEmpty) {
-        allmassage.add(massageset.text.trim());
-        massageset.clear();
-      }
+      allmassage.add(massageset.text.trim());
     });
+    massageset.clear();
+  } else {
+    print("Empty message blocked.");
   }
+}
 
   @override
   Widget build(BuildContext context) {

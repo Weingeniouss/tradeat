@@ -1,12 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
 import 'package:tradeat/view/utils/widget/loder.dart';
+import '../../../utils/app_contrast.dart';
 import '../../../utils/app_string.dart';
 import '../../../utils/widget/authentication_appbar.dart';
 
@@ -132,13 +136,22 @@ class Account extends StatelessWidget {
                   ),
                   SizedBox(height: size.height / 50),
 
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: AppColor.textfield_color,
-                      borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                  GestureDetector(
+                    onTap: (){
+                      LocalDatabase().isLogout();
+                      if(islogin == false){
+                        Get.reset();
+                        Phoenix.rebirth(context);
+                      }
+                      },
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: AppColor.textfield_color,
+                        borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                      ),
+                      child: reporting(context,icons: AppIcon.logout, text: AppString.Logout),
                     ),
-                    child: reporting(context,icons: AppIcon.logout, text: AppString.Logout),
                   ),
                 ],
               ),

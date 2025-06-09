@@ -192,4 +192,15 @@ class LocalDatabase {
     print('login = $islogin');
     print('....');
   }
+
+  void isLogout(){
+    pref!.setBool('login', false);
+    islogin = pref!.getBool('login') ?? true;
+    pref!.clear();
+    feature_list = [];
+    print('feature_list = [] = $feature_list');
+    print('...');
+    print('login = $islogout');
+    print('....');
+  }
 }

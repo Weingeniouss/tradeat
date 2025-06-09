@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -83,9 +84,14 @@ Future<void> main() async {
 
 
    islogin = pref!.getBool('login') ?? false;
+   islogout = pref!.getBool('logout') ?? true;
 
    //print
+
+   print('.............');
+   print('login');
    print('islogin = $islogin');
+   print('.............');
 
 
    // Mobile Number Authntication
@@ -130,7 +136,11 @@ Future<void> main() async {
    print('selectedDurationSecond = $selectedDurationSecond');
 
 
-  runApp(const MyApp());
+  runApp(
+    Phoenix(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

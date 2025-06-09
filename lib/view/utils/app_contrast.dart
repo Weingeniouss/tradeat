@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 SharedPreferences? pref;
 
 bool islogin = false;
+bool islogout = false;
 
 //Mobile Number Authentication
 String mobileNumber = '';

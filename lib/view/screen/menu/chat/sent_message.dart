@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_constructors, unnecessary_null_comparison, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,12 +32,17 @@ class _SentMessageState extends State<SentMessage> {
 
   List<String>allmassage = [];
 
-  void setmassageval(){
+void setmassageval() {
+  String msg = massageset.text.replaceAll(RegExp(r'\s+'), '');
+  if (msg.isNotEmpty) {
     setState(() {
-      allmassage.add(massageset.text);
+      allmassage.add(massageset.text.trim());
     });
     massageset.clear();
+  } else {
+    print("Empty message blocked.");
   }
+}
 
   @override
   Widget build(BuildContext context) {
