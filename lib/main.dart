@@ -32,7 +32,6 @@ import 'view/screen/creations/authentication/setup_profile_1.dart';
 import 'view/screen/creations/authentication/setup_profile_3.dart';
 import 'view/screen/creations/create_plan/pricing_plan.dart';
 
-
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
 
@@ -204,7 +203,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: SetupProfile_thard(),
+        home: Logo(),
       ),
     );
   }
