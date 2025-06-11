@@ -56,7 +56,7 @@ class _ChannelPermissionState extends State<ChannelPermission> {
         return Scaffold(
           appBar: simpaleaapbar(context),
           bottomNavigationBar: Container(
-            height: size.height / 10,
+            height: size.height * 0.090,
             color: AppColor.black_color,
             child: Column(
               children: [
@@ -87,78 +87,72 @@ class _ChannelPermissionState extends State<ChannelPermission> {
                 context: context,
                 child: Column(
                   children: [
-                    SizedBox(height: size.height / 80),
                     ProfileContainer(
                       context: context,
-                      height: size.height / 4,
-                      Widget: horizontalPadding(
-                        context: context,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: size.height / 50),
-                            Text(AppString.Channel_Permission, style: TextStyle(fontSize: size.width / 23, color: AppColor.other_text_color, fontWeight: FontWeight.w600)),
-                            SizedBox(height: size.height / 50),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(width: size.width / 2, child: Text(AppString.Channel_Private, style: TextStyle(color: AppColor.other_text_color, fontSize: size.width / 26))),
-                                Center(
-                                  child: GestureDetector(
-                                    onTap: () => channelPermission.add(TogglePrivateEvent()),
-                                      child: swichs(isToggled: state.isPrivate),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: size.height / 50),
-                              Row(
-                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SizedBox(width: size.width / 2, child: Text(AppString.Join_The_Channel, style: TextStyle(color: AppColor.other_text_color, fontSize: size.width / 26))),
-                                  Center(
-                                    child: GestureDetector(
-                                      onTap: () => channelPermission.add(ToggleJoinChannelEvent()),
-                                      child: swichs(isToggled: state.isJoinChannel),
-                                    ),
-                                  ),
-                                ],
+                      Widget: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: size.height / 50),
+                          Text(AppString.Channel_Permission, style: TextStyle(fontSize: size.width / 23, color: AppColor.other_text_color, fontWeight: FontWeight.w600)),
+                          SizedBox(height: size.height / 50),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: size.width / 2, child: Text(AppString.Channel_Private, style: TextStyle(color: AppColor.other_text_color, fontSize: size.width / 26))),
+                              Center(
+                                child: GestureDetector(
+                                  onTap: () => channelPermission.add(TogglePrivateEvent()),
+                                  child: swichs(isToggled: state.isPrivate),
+                                ),
                               ),
                             ],
                           ),
-                        ),
+                          SizedBox(height: size.height / 50),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: size.width / 2, child: Text(AppString.Join_The_Channel, style: TextStyle(color: AppColor.other_text_color, fontSize: size.width / 26))),
+                              Center(
+                                child: GestureDetector(
+                                  onTap: () => channelPermission.add(ToggleJoinChannelEvent()),
+                                  child: swichs(isToggled: state.isJoinChannel),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                     SizedBox(height: size.height / 50),
-                     ProfileContainer(context: context,height: size.height / 3.7,
-                         Widget: horizontalPadding(
-                           context: context,
-                           child: Column(
-                             crossAxisAlignment: CrossAxisAlignment.start,
-                             children: [
-                               SizedBox(height: size.height / 80),
-                               Text(AppString.Channel_Features,style: TextStyle(fontSize: size.width / 23,color: AppColor.other_text_color,fontWeight: FontWeight.w600)),
-                               SizedBox(height: size.height / 80),
-                               BlocBuilder<ProfileBloc, ProfileState>(
-                                builder: (BuildContext context, state) {
-                                  return Aboutinputfield(
-                                    onChanged: (val) => context.read<ProfileBloc>().add(AboutTextChangedEvent(val)),
-                                    abouting_controller: abouting_controller,
-                                    hintText:AppString.hintChannelFeatures,
-                                    text: AppString.Channel_Features,
-                                    widget: GestureDetector(
-                                      onTap: () {
-                                        if(abouting_controller.text.length >= 6) {
-                                          channelPermission.add(AddChannelFeatureEvent(abouting_controller.text));
-                                          pref!.setString('abouting', abouting_controller.text);
-                                          permission = pref!.getString('abouting')!;
-                                          print('abouting = $permission');
+                    ),
+                    SizedBox(height: size.height / 50),
+                    ProfileContainer(
+                      context: context,
+                         Widget: Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             SizedBox(height: size.height / 80),
+                             Text(AppString.Channel_Features,style: TextStyle(fontSize: size.width / 23,color: AppColor.other_text_color,fontWeight: FontWeight.w600)),
+                             SizedBox(height: size.height / 80),
+                             BlocBuilder<ProfileBloc, ProfileState>(
+                               builder: (BuildContext context, state) {
+                                 return Aboutinputfield(
+                                   onChanged: (val) => context.read<ProfileBloc>().add(AboutTextChangedEvent(val)),
+                                   abouting_controller: abouting_controller,
+                                   hintText:AppString.hintChannelFeatures,
+                                   text: AppString.Channel_Features,
+                                   widget: GestureDetector(
+                                     onTap: () {
+                                       if(abouting_controller.text.length >= 6) {
+                                         channelPermission.add(AddChannelFeatureEvent(abouting_controller.text));
+                                         pref!.setString('abouting', abouting_controller.text);
+                                         permission = pref!.getString('abouting')!;
+                                         print('abouting = $permission');
 
-                                          final currentList = channelPermission.state.features;
-                                          pref!.setStringList('feature_list', List<String>.from(currentList)..add(abouting_controller.text));
-                                          feature_list = pref!.getStringList('feature_list')!;
-                                          pref!.setInt('feature_count', channelPermission.state.features.length + 1);
-                                        }
-                                        abouting_controller.clear();
+                                         final currentList = channelPermission.state.features;
+                                         pref!.setStringList('feature_list', List<String>.from(currentList)..add(abouting_controller.text));
+                                         feature_list = pref!.getStringList('feature_list')!;
+                                         pref!.setInt('feature_count', channelPermission.state.features.length + 1);
+                                       }
+                                       abouting_controller.clear();
                                       },
                                       child: (abouting_controller.text.length >= 6) ? ShaderMask(
                                         shaderCallback: (bounds) => LinearGradient(colors: [AppColor.yellow_color, AppColor.orange_color], begin: Alignment.topCenter,end: Alignment.bottomCenter).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
@@ -170,7 +164,6 @@ class _ChannelPermissionState extends State<ChannelPermission> {
                                ),
                              ],
                            ),
-                         ),
                      ),
                      SizedBox(height: size.height / 50),
                      Expanded(
@@ -184,13 +177,13 @@ class _ChannelPermissionState extends State<ChannelPermission> {
                                  color: AppColor.textfield_color,
                                  borderRadius: BorderRadiusDirectional.circular(size.width / 25),
                                ),
-                               padding: EdgeInsets.all(13),
+                               padding: EdgeInsets.all(10),
                                child: Row(
                                  children: [
                                    horizontalPadding(
                                        context: context,
                                        child: SizedBox(
-                                         width: size.width / 1.9,
+                                         width: size.width / 2,
                                          child: Text(state.features[index], style: TextStyle(color: AppColor.other_text_color,fontWeight: FontWeight.w500),
                                          ),
                                        ),

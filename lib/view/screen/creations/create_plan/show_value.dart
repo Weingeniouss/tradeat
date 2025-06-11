@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tradeat/controller/database/loacl_store/local.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
@@ -32,12 +33,7 @@ class ShowValue extends StatelessWidget {
               child: Button(
                 onTap: () {
                   LocalDatabase().isLogins();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return ChannaleNavigation();
-                    }),
-                  );
+                  Get.offAll(() => ChannaleNavigation());
                 },
                 context: context,
                 buttonname: AppString.Next,
@@ -58,14 +54,10 @@ class ShowValue extends StatelessWidget {
               SizedBox(height: size.height / 50),
               ProfileContainer(
                 context: context,
-                height: size.height / 6.5,
-                Widget: horizontalPadding(
-                  context: context,
-                  child: Column(
+                Widget: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: size.height / 50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -83,9 +75,7 @@ class ShowValue extends StatelessWidget {
                       Text(AppString.Free_trial,style: TextStyle(fontSize: size.width / 26,color: AppColor.other_text_color)),
                       SizedBox(height: size.height / 150),
                       Text(valuemark,style: TextStyle(fontSize: size.width / 20,color: AppColor.white_color,fontWeight: FontWeight.w600)),
-                      SizedBox(height: size.height / 50),
                     ],
-                  ),
                 ),
               ),
               SizedBox(height: size.height / 50),

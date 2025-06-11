@@ -14,6 +14,7 @@ import 'package:tradeat/view/utils/widget/button.dart';
 import 'package:tradeat/view/utils/widget/card_verification.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
 import 'package:tradeat/view/utils/widget/inputfield.dart';
+import 'package:tradeat/view/utils/widget/profile_container.dart';
 import '../../../utils/responsive.dart';
 import '../../../utils/widget/authentication_appbar.dart';
 
@@ -105,7 +106,7 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
 
           //Button
               ? Container(
-            height: size.height / 10,
+               height: size.height * 0.070,
                 color: AppColor.black_color,
                 child: Center(
                   child: horizontalPadding(
@@ -176,20 +177,11 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                 isbankingcontainer = !isbankingcontainer;
                               });
                               },
-                            child: AnimatedContainer(
-                              width: size.width,
-                              height: (isbankingcontainer)
-                                  ? size.height / 1.6
-                                  : size.height / 12,
-                              decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadius.circular(size.width / 25)),
-                              duration: Duration(milliseconds: 800),
-                              child: horizontalPadding(
-                                context: context,
-                                child: SingleChildScrollView(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  child: Column(
+                            child: AnimatedContainers(
+                              context: context,
+                              child: SingleChildScrollView(
+                                child: Column(
                                     children: [
-                                      SizedBox(height: size.height / 50),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -298,11 +290,9 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                         ),
                                       ],
                                     ),
-                                  ),
                                 ),
                               ),
                             ),
-                            SizedBox(height: size.height / 60),
                           ],
                         )
                       ),

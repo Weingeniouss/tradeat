@@ -6,6 +6,7 @@ import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/authentication_appbar.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
 import 'package:tradeat/view/utils/widget/loder.dart';
+import 'package:tradeat/view/utils/widget/profile_container.dart';
 
 import '../../../utils/app_string.dart';
 import '../../../utils/widget/shadermask.dart';
@@ -57,14 +58,11 @@ class _SignalState extends State<Signal> {
                   context: context,
                   child: ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
+                      return ProfileContainer(
+                        context: context,
                         margin: EdgeInsets.symmetric(vertical: size.width / 50),
                         padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: AppColor.textfield_color,
-                          borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                        ),
-                        child: Column(
+                        Widget: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(

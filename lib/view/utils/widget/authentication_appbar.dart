@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, unused_local_variable, prefer_const_constructors, unnecessary_import, unnecessary_null_comparison
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +19,9 @@ import 'horizontal_padding.dart';
 
 PreferredSizeWidget authenticationAppBar({required BuildContext context,required double progress}) {
   final size = AppSize(context);
-  double appbarsize =  size.height / 5;
+  final Size screenSize = MediaQuery.of(context).size;
+  final double appBarHeight = max(screenSize.height * 0.15, 128.0);
+  // double appbarsize = size.height * 0.18 * 0.99;
   final headingSize = heading(context);
   final subheadingSize = subheading(context);
   final responsivetext = responsive_text(context);
@@ -25,9 +29,8 @@ PreferredSizeWidget authenticationAppBar({required BuildContext context,required
   ValueNotifier<double> progressNotifier = ValueNotifier<double>(progress);
 
   return PreferredSize(
-    preferredSize: Size.fromHeight(appbarsize),
+    preferredSize: Size.fromHeight(appBarHeight),
     child: Container(
-      height: appbarsize, width: size.width,
       decoration: BoxDecoration(color: AppColor.black_color),
       child: SafeArea(
         child: horizontalPadding(
@@ -72,18 +75,18 @@ PreferredSizeWidget authenticationAppBar({required BuildContext context,required
     ),
   );
 }
-
 PreferredSizeWidget authenticationprice({required BuildContext context}) {
   final size = AppSize(context);
-  double appbarsize =  size.height / 4;
+  final Size screenSize = MediaQuery.of(context).size;
+  final double appBarHeight = max(screenSize.height * 0.25, 190.0);
   final headingSize = heading(context);
   final subheadingSize = subheading(context);
   final responsivetext = responsive_text(context);
 
   return PreferredSize(
-    preferredSize: Size.fromHeight(appbarsize),
+    preferredSize: Size.fromHeight(appBarHeight),
     child: Container(
-      height: appbarsize, width: size.width,
+      height: appBarHeight,
       decoration: BoxDecoration(color: AppColor.black_color),
       child: SafeArea(
         child: horizontalPadding(
@@ -114,17 +117,16 @@ PreferredSizeWidget authenticationprice({required BuildContext context}) {
     ),
   );
 }
-
 PreferredSizeWidget authenticationChannel({required BuildContext context}) {
   final size = AppSize(context);
-  double appbarsize =  size.height / 3.6;
+  final Size screenSize = MediaQuery.of(context).size;
+  final double appBarHeight = max(screenSize.height * 0.25, 170.0);
   final headingSize = heading(context);
   final subheadingSize = subheading(context);
   final responsivetext = responsive_text(context);
   return PreferredSize(
-    preferredSize: Size.fromHeight(appbarsize),
+    preferredSize: Size.fromHeight(appBarHeight),
     child: Container(
-      height: appbarsize, width: size.width,
       decoration: BoxDecoration(color: AppColor.black_color),
       child: SafeArea(
         child: horizontalPadding(
@@ -188,7 +190,7 @@ PreferredSizeWidget simpaleaapbar(context,{String? text, String? subtext, String
           (text != null) ? Row(
             children: [
               (icons != null) ? GestureDetector(onTap: () => Navigator.pop(context), child: SvgPicture.asset(icons)) : SizedBox(),
-              (icons != null) ? SizedBox(width: size.width / 30) :  SizedBox(),
+              (icons != null) ? SizedBox(width: size.width / 30) : SizedBox(),
               (image != null)
                   ? CircleAvatar(backgroundImage: AssetImage(image.toString())) : SizedBox(),
                    (image != null) ? SizedBox(width: size.width / 40) : SizedBox(),

@@ -45,11 +45,9 @@ class SetupProfile_frist extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: horizontalPadding(context: context,
                       child: ProfileContainer(context: context,
-                        Widget: horizontalPadding(context: context,
-                          child: Column(
+                        Widget: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: size.height / 30),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -80,7 +78,6 @@ class SetupProfile_frist extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
                       ),
                     ),
                   ),

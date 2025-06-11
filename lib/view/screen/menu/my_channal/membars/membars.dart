@@ -7,7 +7,7 @@ import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/authentication_appbar.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
-
+import 'package:tradeat/view/utils/widget/loder.dart';
 import '../../../../../modal/chat_message.dart';
 import '../../../../utils/widget/shadermask.dart';
 
@@ -35,8 +35,7 @@ class _MembarsState extends State<Membars> {
     return Scaffold(
       appBar: simpaleaapbar(context, text: AppString.Members, icons: AppIcon.left),
       body: Container(
-        width: size.width,
-        height: size.height,
+        width: size.width, height: size.height,
         decoration: BoxDecoration(color: AppColor.black_color),
         child: horizontalPadding(
           context: context,
@@ -63,65 +62,71 @@ class _MembarsState extends State<Membars> {
                 ),
               ),
               SizedBox(height: size.height / 50),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                    color: AppColor.textfield_color, // optional background
-                  ),
-                  child: ListView.builder(
-                    itemCount: chat.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: size.height / 150),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(radius: 25,backgroundImage: AssetImage(chat[index]['image'])),
-                                SizedBox(width: size.width / 25),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      chat[index]['name'],
-                                      style: TextStyle(
-                                        fontSize: size.width / 26,
-                                        color: AppColor.white_color,
-                                        fontWeight: FontWeight.w600,
+              FutureBuilder(
+                future: fetchChats(),
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return SizedBox(
+                      height: size.height * 0.6,
+                      child: Center(child: LodingState(context)),
+                    );
+                  }
+
+                  if(snapshot.connectionState == ConnectionState.done) {
+                    return Expanded(
+                    child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                      color: AppColor.textfield_color, // optional background
+                    ),
+                    child: ListView.builder(
+                      itemCount: chat.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: size.height / 150),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(radius: 23,backgroundImage: AssetImage(chat[index]['image'])),
+                                  SizedBox(width: size.width / 25),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(chat[index]['name'], style: TextStyle(fontSize: size.width / 30, color: AppColor.white_color, fontWeight: FontWeight.w600)),
+                                      Row(
+                                        children: [
+                                           Text('Subscribed : ', style: TextStyle(fontSize: size.width / 33, color: AppColor.other_text_color)),
+                                           Text(chat[index]['Subscribed'], style: TextStyle(fontSize: size.width / 33, color: AppColor.other_text_color)),
+                                        ],
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                         Text(
-                                          'Subscribed : ',
-                                          style: TextStyle(
-                                            fontSize: size.width / 30,
-                                            color: AppColor.other_text_color,
-                                          ),
-                                        ),
-                                        Text(
-                                          chat[index]['Subscribed'],
-                                          style: TextStyle(
-                                            fontSize: size.width / 30,
-                                            color: AppColor.other_text_color,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: size.height / 150),
-                            Divider(color: AppColor.gray_color),
-                          ],
-                        ),
-                      );
-                    },
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: size.height / 150),
+                              Divider(color: AppColor.gray_color),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
+                );}
+
+                  if(snapshot.hasError) {
+                    return SizedBox(
+                      height: size.height * 0.6,
+                      child: Center(
+                        child: Text('Soory !', style: TextStyle(color: AppColor.white_color,fontSize: size.width / 27)),
+                      ),
+                    );
+                  }
+
+                 return SizedBox();
+                },
               ),
             ],
           ),

@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tradeat/view/screen/menu/account/account.dart';
 import 'package:tradeat/view/screen/menu/home/home.dart';
@@ -10,19 +11,15 @@ import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
+import '../../../../controller/userInterface/creations/bloc/bottam_navigation/channale_navigation/channale_navigation.dart';
+import '../../../../controller/userInterface/creations/event/bottam_navigation/channale_navigation/channle_navigation_Evant.dart';
+import '../../../../controller/userInterface/creations/state/Bottam_navigation/channale_navigation/channale_navigation.dart';
 import '../../../screen/menu/chat/chart.dart';
 import '../../../screen/menu/my_channal/my_channel.dart';
 import '../shadermask.dart';
 
-class ChannaleNavigation extends StatefulWidget {
-  const ChannaleNavigation({super.key});
-
-  @override
-  State<ChannaleNavigation> createState() => _ChannaleNavigationState();
-}
-
-class _ChannaleNavigationState extends State<ChannaleNavigation> {
-  int selectindex = 0;
+class ChannaleNavigation extends StatelessWidget {
+  ChannaleNavigation({super.key});
 
   List<Widget> selectedscreen = [
     MyChannel(),
@@ -32,113 +29,94 @@ class _ChannaleNavigationState extends State<ChannaleNavigation> {
     Account(),
   ];
 
-  Widget widgetselected(index) {
-    return selectedscreen[index];
-  }
-
-  void channelindex() {
-    setState(() => selectindex = 0);
-  }
-
-  void chatindex(){
-    setState(() => selectindex = 1);
-  }
-
-  void homeindex(){
-    setState(() => selectindex = 2);
-  }
-
-  void signalindex(){
-    setState(() => selectindex = 3);
-  }
-
-  void accountindex(){
-    setState(() => selectindex = 4);
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = AppSize(context);
-    return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(color: AppColor.black_color),
-        height: size.height / 8,
-        width: size.width,
-        child: Column(
-          children: [
-            SizedBox(height: size.height / 50),
-            horizontalPadding(
-              context: context,
-              child: Container(
-                height: size.height / 12, width: size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(size.width / 25),
-                  color: AppColor.textfield_color,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width / 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    final changeTab = context.read<NavigationBloc>();
+    return BlocBuilder<NavigationBloc, NavigationState>(
+      builder: (BuildContext context, state) {
+        return Scaffold(
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(color: AppColor.black_color),
+          height: size.height * 0.13,
+          child: Column(
+            children: [
+              SizedBox(height: size.height / 50),
+              horizontalPadding(
+                context: context,
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(size.width / 25),
+                    color: AppColor.textfield_color,
+                  ),
+                  child: Column(
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
 
-                      //channel
-                      iconsTupe(
-                        onTap: () => channelindex(),
-                        context: context,
-                        indexs: selectindex == 0,
-                        text: AppString.Channels,
-                        trueicon: AppIcon.channel_true,
-                        falseicon: AppIcon.channel_flase,
-                      ),
+                          //channel
+                          iconsTupe(
+                            onTap: () => changeTab.add(SelectNavigationTab(0)),
+                            context: context,
+                            indexs: state.selectedIndex == 0,
+                            text: AppString.Channels,
+                            trueicon: AppIcon.channel_true,
+                            falseicon: AppIcon.channel_flase,
+                          ),
 
-                      //chart
-                      iconsTupe(
-                        onTap: () => chatindex(),
-                        context: context,
-                        indexs: selectindex == 1,
-                        text: AppString.Chat,
-                        trueicon: AppIcon.chart_true,
-                        falseicon: AppIcon.chart_false,
-                      ),
+                          //chart
+                          iconsTupe(
+                            onTap: () => changeTab.add(SelectNavigationTab(1)),
+                            context: context,
+                            indexs: state.selectedIndex == 1,
+                            text: AppString.Chat,
+                            trueicon: AppIcon.chart_true,
+                            falseicon: AppIcon.chart_false,
+                          ),
 
-                      //home
-                      iconsTupe(
-                        onTap: () => homeindex(),
-                        context: context,
-                        indexs: selectindex == 2,
-                        text: AppString.Home,
-                        trueicon: AppIcon.home_true,
-                        falseicon: AppIcon.home_false,
-                      ),
+                          //home
+                          iconsTupe(
+                            onTap: () => changeTab.add(SelectNavigationTab(2)),
+                            context: context,
+                            indexs: state.selectedIndex == 2,
+                            text: AppString.Home,
+                            trueicon: AppIcon.home_true,
+                            falseicon: AppIcon.home_false,
+                          ),
 
-                      //singnal
-                      iconsTupe(
-                        onTap: () => signalindex(),
-                        context: context,
-                        indexs: selectindex == 3,
-                        text: AppString.Signal,
-                        trueicon: AppIcon.signal,
-                        falseicon: AppIcon.singal_false,
-                      ),
+                          //singnal
+                          iconsTupe(
+                            onTap: () => changeTab.add(SelectNavigationTab(3)),
+                            context: context,
+                            indexs: state.selectedIndex == 3,
+                            text: AppString.Signal,
+                            trueicon: AppIcon.signal,
+                            falseicon: AppIcon.singal_false,
+                          ),
 
-                      //account
-                      iconsTupe(
-                        onTap: () => accountindex(),
-                        context: context,
-                        indexs: selectindex == 4,
-                        text: AppString.Account,
-                        trueicon: AppIcon.account_true,
-                        falseicon: AppIcon.account_flase,
+                          //account
+                          iconsTupe(
+                            onTap: () => changeTab.add(SelectNavigationTab(4)),
+                            context: context,
+                            indexs: state.selectedIndex == 4,
+                            text: AppString.Account,
+                            trueicon: AppIcon.account_true,
+                            falseicon: AppIcon.account_flase,
+                          ),
+                        ],
                       ),
+                      SizedBox(height: size.height / 100),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-      body: widgetselected(selectindex),
+        body: selectedscreen[state.selectedIndex]);
+        },
     );
   }
 }

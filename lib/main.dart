@@ -16,9 +16,11 @@ import 'package:tradeat/view/screen/splace/logo.dart';
 import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_contrast.dart';
 import 'package:tradeat/view/utils/widget/bottam_navigation/Daily_Trading_navigation.dart';
+import 'package:tradeat/view/utils/widget/bottam_navigation/channale_navigation.dart';
 import 'controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_1/setup_profile_1_bloc.dart';
 import 'controller/userInterface/creations/bloc/authentication/setup_profile_2/setup_profile_2.dart';
+import 'controller/userInterface/creations/bloc/bottam_navigation/channale_navigation/channale_navigation.dart';
 import 'controller/userInterface/creations/bloc/create_plan/channel_plan_bloc.dart';
 import 'controller/userInterface/creations/bloc/create_plan/create_channel_bloc.dart';
 import 'controller/userInterface/creations/bloc/create_plan/create_plan_bloc.dart';
@@ -29,15 +31,14 @@ import 'modal/country_state_city.dart';
 import 'view/screen/creations/authentication/setup_profile_1.dart';
 import 'view/screen/creations/authentication/setup_profile_3.dart';
 import 'view/screen/creations/create_plan/pricing_plan.dart';
-import 'view/utils/widget/bottam_navigation/channale_navigation.dart';
 
 
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
 
    ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Center(child: Text("Error: ${details.exception}"));
-  };
+     return Center(child: Text("Error: ${details.exception}"));
+    };
 
    pref = await SharedPreferences.getInstance();
 
@@ -180,6 +181,11 @@ class MyApp extends StatelessWidget {
 
         //channal plan
         BlocProvider(create: (_) => DurationCubit()),
+
+        //Bottam Navigation
+        BlocProvider(create: (_) => NavigationBloc(), child: ChannaleNavigation(),
+       ),
+
       ],
       child: GetMaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(

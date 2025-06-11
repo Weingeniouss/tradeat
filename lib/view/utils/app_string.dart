@@ -1,6 +1,5 @@
 // ignore_for_file: constant_identifier_names
 
-
 class AppString {
   //Button
   static const Continue = 'Continue';
@@ -17,6 +16,7 @@ class AppString {
   static const Home = 'Home';
   static const Signal = 'Signal';
   static const Account = 'Account';
+
   //Daliy trading App
   static const Message = 'Message';
   static const Watchlist = 'Watchlist';
@@ -60,8 +60,8 @@ class AppString {
   static const Pan = 'Pan Card Verification';
   static const Aadhar = 'Aadhar Card Verification';
   static const Bank_Details = 'Bank Details';
-  static const hintAccount ='Enter Account Number';
-  static const Pan_Card_number =  'Pan Card Number';
+  static const hintAccount = 'Enter Account Number';
+  static const Pan_Card_number = 'Pan Card Number';
   static const OTP = 'OTP';
   static const Account_Number = 'Account Number';
   static const Account_Holder_Name = 'Account Holder Name';
@@ -99,7 +99,7 @@ class AppString {
   static const Channel_Private = 'Do You Want To Make This Channel Private ?';
   static const Join_The_Channel = 'Request Required For Members To Join The Channel ?';
   static const Channel_Features = 'Channel Features';
-  static const hintChannelFeatures =  'Enter Your Channel Features';
+  static const hintChannelFeatures = 'Enter Your Channel Features';
   static const Channel_Permission = 'Channel Permission';
   static const Add_Feature = '+Add Feature';
 
@@ -119,18 +119,19 @@ class AppString {
 
   //Show value
   static const Free_trial = '7 Days Free Trial';
-  static const addplan ='+ Add Plan';
+  static const addplan = '+ Add Plan';
 
   //My Channel
   static const MyChannel = "My Channel";
   static const Create_Channel = '+Create Channel';
+
   //My channel listing
   static const DailyTradingTips = 'Daily Trading Tips';
-  static const subtextDailyTradingTips = 'Sed ut perspiciatis unde omnis iste ai error sit voluptatem accusantium dolor emque.';
+  static const subtextDailyTradingTips =
+      'Sed ut perspiciatis unde omnis iste ai error sit voluptatem accusantium dolor emque.';
   static const win = 'WIN';
   static const AVGRETURN = 'AVG. RETURN';
   static const LIVESIGNAL = 'LIVE SIGNAL';
-
 
   //Message
   static const Messages = 'Message';
@@ -164,4 +165,23 @@ class AppString {
   static const ActiveUser = 'Active User';
   static const NewUser = 'New User';
   static const BlockUser = 'Block User';
+
+  //equity
+  static const RecentSearch = 'Recent Search';
+  static const NSE = 'NSE';
+  static const Summary = 'Summary';
+  static const TodaysLow = 'Today’s Low';
+  static const TodaysHigh = 'Today’s High';
+  static const WeekLow = '52 Week Low';
+  static const WeekHigh = '52 Week High';
+  static const SignalDetails = 'Order Price';
+  static const TargetPrice1 = 'Target Price 1';
+  static const TargetPrice2 = 'Target Price 2';
+  static const TargetPrice3 = 'Target Price 3';
+  static const StopLoss = 'Stop-Loss';
+  static const hintStopLoss = 'Enter Stop-Loss Price';
+  static const hintTargetPrice3 = 'Enter Target Price 3';
+  static const hintTargetPrice2 = 'Enter Target Price 2';
+  static const hintTargetPrice1 = 'Enter Target Price 1';
+  static const hintSignalDetails = 'Enter Order Price';
 }

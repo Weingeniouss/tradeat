@@ -56,7 +56,7 @@ dependencies:
   flutter_speed_dial:
   persistent_bottom_nav_bar_v2:
   shared_preferences:
-  flutter_phoenix: ^1.1.0
+  flutter_phoenix:
 
 dev_dependencies:
   flutter_test:

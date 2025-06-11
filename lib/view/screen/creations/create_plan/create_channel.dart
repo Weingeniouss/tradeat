@@ -43,20 +43,15 @@ class CreateChannel extends StatelessWidget {
                   SizedBox(height: size.height / 50),
                   ProfileContainer(
                     context: context,
-                    height: size.height / 2.15,
-                    Widget: horizontalPadding(
-                      context: context,
-                      child: Column(
-                        children: [
-                          SizedBox(height: size.height / 50),
-                          inputfield(onChanged: (text) => context.read<ChannelBloc>().add(ChannelTextChanged(text)),context: context, hintText: AppString.hintChannel, text: AppString.Channel, controller: Channelcontroller),
-                          BlocBuilder<ProfileBloc, ProfileState>(
+                    Widget: Column(
+                      children: [
+                        inputfield(onChanged: (text) => context.read<ChannelBloc>().add(ChannelTextChanged(text)),context: context, hintText: AppString.hintChannel, text: AppString.Channel, controller: Channelcontroller),
+                        BlocBuilder<ProfileBloc, ProfileState>(
                           builder: (BuildContext context, state) {
                             return Aboutinputfield(onChanged: (text) {
                               context.read<ProfileBloc>().add(AboutTextChangedEvent(text));
                               context.read<ChannelBloc>().add(AboutingTextChanged(text));
-                            },
-                              abouting_controller: abouting_controller,hintText: AppString.hintChannel,
+                            }, abouting_controller: abouting_controller,hintText: AppString.hintChannel,
                             );
                           },
                           ),
@@ -69,7 +64,6 @@ class CreateChannel extends StatelessWidget {
                           },context: context,buttoncondition: state.isValid, buttonname: AppString.Next),
                         ],
                       ),
-                    ),
                   ),
                 ],
               ),

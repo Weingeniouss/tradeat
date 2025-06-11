@@ -18,7 +18,15 @@ class Aboutinputfield extends StatelessWidget {
   final String? text;
   final Widget? widget;
 
-  const Aboutinputfield({super.key, required this.abouting_controller, this.onChanged, this.onTap, this.hintText, this.text, this.widget});
+  const Aboutinputfield({
+    super.key,
+    required this.abouting_controller,
+    this.onChanged,
+    this.onTap,
+    this.hintText,
+    this.text,
+    this.widget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +40,13 @@ class Aboutinputfield extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(text ??AppString.About_You, style: TextStyle(fontSize: responsivetext.value, color: AppColor.other_text_color)),
+              Text(
+                text ?? AppString.About_You,
+                style: TextStyle(
+                  fontSize: responsivetext.value,
+                  color: AppColor.other_text_color,
+                ),
+              ),
               if (widget != null) widget!,
             ],
           ),

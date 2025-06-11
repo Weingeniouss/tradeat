@@ -14,7 +14,7 @@ import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/button.dart';
-import 'package:tradeat/view/utils/widget/horizontal_padding.dart';
+import 'package:tradeat/view/utils/widget/profile_container.dart';
 import '../../../../controller/userInterface/creations/event/create_plan/create_plan_event.dart';
 import '../../../utils/widget/authentication_appbar.dart';
 
@@ -34,50 +34,51 @@ class PricingPlan extends StatelessWidget {
             activeIndex = state.currentIndex;
           }
           return Container(
-          width: size.width,
-          height: size.height,
+          width: size.width, height: size.height,
           decoration: BoxDecoration(color: AppColor.black_color),
-          child: Column(
-            children: [
-              SizedBox(height: size.height / 50),
-              CarouselSlider(
-                  items: [
-                    add_Container(context: context, Month: AppString.Monthly_500,button: Button(onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateChannel()));
-                    } ,context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
-                    add_Container(context: context, Month: AppString.Monthly_1000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
-                    add_Container(context: context, Month: AppString.Monthly_5000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
-                  ],
-                  options: CarouselOptions(
-                      reverse: false,
-                      enableInfiniteScroll: false,
-                      height: size.height / 1.5,
-                      onPageChanged: (index, reason) =>  context.read<PricingBloc>().add(PricingIndexChanged(index)),
-                  ),
-              ),
-              SizedBox(height: size.height / 50),
-              ShaderMask(
-                shaderCallback: (Rect bounds) {
-                  return LinearGradient(
-                    colors: [AppColor.yellow_color, AppColor.orange_color],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ).createShader(bounds);
-                },
-                blendMode: BlendMode.srcIn,
-                child: AnimatedSmoothIndicator(
-                  count: 3,
-                  effect: WormEffect(
-                    dotHeight: 12,
-                    dotWidth: 12,
-                    spacing: 8,
-                    dotColor: Colors.grey.withOpacity(0.3),
-                    activeDotColor: AppColor.white_color,
-                  ),
-                  activeIndex: activeIndex,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: size.height / 50),
+                CarouselSlider(
+                    items: [
+                      add_Container(context: context, Month: AppString.Monthly_500,button: Button(onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => CreateChannel()));
+                      } ,context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
+                      add_Container(context: context, Month: AppString.Monthly_1000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
+                      add_Container(context: context, Month: AppString.Monthly_5000,button: Button(context: context, buttonname: AppString.Subscribe, buttoncondition: buttoncondition)),
+                    ],
+                    options: CarouselOptions(
+                        reverse: false,
+                        enableInfiniteScroll: false,
+                        height: size.height / 1.5,
+                        onPageChanged: (index, reason) =>  context.read<PricingBloc>().add(PricingIndexChanged(index)),
+                    ),
                 ),
-              ),
-            ],
+                SizedBox(height: size.height / 50),
+                ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return LinearGradient(
+                      colors: [AppColor.yellow_color, AppColor.orange_color],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ).createShader(bounds);
+                  },
+                  blendMode: BlendMode.srcIn,
+                  child: AnimatedSmoothIndicator(
+                    count: 3,
+                    effect: WormEffect(
+                      dotHeight: 12,
+                      dotWidth: 12,
+                      spacing: 8,
+                      dotColor: Colors.grey.withOpacity(0.3),
+                      activeDotColor: AppColor.white_color,
+                    ),
+                    activeIndex: activeIndex,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
         },
@@ -90,16 +91,13 @@ Widget add_Container({required BuildContext context, required String Month,Widge
   final size = AppSize(context);
   return StatefulBuilder(
     builder: (BuildContext context, void Function(void Function()) setState) {
-      return Container(
-      margin: EdgeInsets.symmetric(horizontal: size.width / 50),
-      height: size.height / 1.5, width: size.width,
-      decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadiusDirectional.circular(size.width / 25)),
-      child: horizontalPadding(
+      return ProfileContainer(
         context: context,
-        child: Column(
+        margin: EdgeInsets.symmetric(horizontal: size.width / 50),
+        padding: EdgeInsets.all(20),
+        Widget: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: size.height / 50),
             SvgPicture.asset(AppIcon.price),
             SizedBox(height: size.height / 80),
             Text(AppString.Month, style: TextStyle(fontSize: size.width / 25, fontWeight: FontWeight.w600, color: AppColor.white_color)),
@@ -124,11 +122,9 @@ Widget add_Container({required BuildContext context, required String Month,Widge
                                   shape: BoxShape.circle,
                                   gradient: LinearGradient(
                                     colors: [
-                                      AppColor.yellow_color,
-                                      AppColor.orange_color
+                                      AppColor.yellow_color, AppColor.orange_color,
                                     ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
+                                    begin: Alignment.topCenter, end: Alignment.bottomCenter,
                                   ),
                                 ),
                                 child: CircleAvatar(
@@ -148,10 +144,8 @@ Widget add_Container({required BuildContext context, required String Month,Widge
                   }),
             ),
             button!,
-            SizedBox(height: size.height / 50),
           ],
         ),
-      ),
     );
     },
   );

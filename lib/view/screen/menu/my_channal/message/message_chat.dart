@@ -2,14 +2,13 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tradeat/view/screen/menu/my_channal/message/sent_message_chat.dart';
 import 'package:tradeat/view/utils/app_color.dart';
-import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
 import 'package:tradeat/view/utils/widget/loder.dart';
 import '../../../../../modal/chat_message.dart';
 import '../../../../utils/app_string.dart';
+import '../../../../utils/widget/Search.dart';
 import '../../../../utils/widget/authentication_appbar.dart';
 import '../../../../utils/widget/horizontal_padding.dart';
 
@@ -82,11 +81,11 @@ class _MessageChatState extends State<MessageChat> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Scaffold(
-                body: Container(
-                  height: size.height, width: size.width,
-                  decoration: BoxDecoration(color: AppColor.black_color),
-                  child: LodingState(context),
-                )
+              body: Container(
+                height: size.height, width: size.width,
+                decoration: BoxDecoration(color: AppColor.black_color),
+                child: Center(child: LodingState(context)),
+              ),
             );
           }
           if (snapshot.connectionState == ConnectionState.done) {
@@ -100,32 +99,7 @@ class _MessageChatState extends State<MessageChat> {
 
                     //Sarch of Membars
                     SizedBox(height: size.height / 50),
-                    Container(
-                      width: size.width, height: size.height / 15,
-                      decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(size.width / 25), color: AppColor.textfield_color),
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Center(
-                          child: TextField(
-                            cursorColor: AppColor.white_color,
-                            controller: Searchmassage,
-                            onChanged: (value) => onSearchChanged(value),
-                            style: TextStyle(color: AppColor.white_color),
-                            decoration: InputDecoration(
-                              hintText: AppString.SearchMembers,
-                              hintStyle: TextStyle(color: AppColor.other_text_color),
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.all(10),
-                                child: SvgPicture.asset(AppIcon.search, fit: BoxFit.cover),
-                              ),
-                              enabledBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    searchBar(context: context, controller: Searchmassage, onChanged: onSearchChanged),
                     SizedBox(height: size.height / 50),
 
                     //List of Mambar
@@ -180,7 +154,7 @@ class _MessageChatState extends State<MessageChat> {
                                             gradient: LinearGradient(
                                               colors: [
                                                 AppColor.yellow_color,
-                                                AppColor.orange_color
+                                                AppColor.orange_color,
                                               ],
                                               begin: Alignment.topCenter,
                                               end: Alignment.bottomCenter,

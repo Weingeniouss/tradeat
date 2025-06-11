@@ -57,58 +57,62 @@ class _DailyTrading_navigationState extends State<DailyTrading_navigation> {
     return Scaffold(
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: AppColor.black_color),
-        height: size.height / 8,
-        width: size.width,
+        height: size.height * 0.13,
         child: Column(
           children: [
             SizedBox(height: size.height / 50),
             horizontalPadding(
               context: context,
               child: Container(
-                height: size.height / 12, width: size.width,
+                padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(borderRadius: BorderRadiusDirectional.circular(size.width / 25), color: AppColor.textfield_color),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
 
-                    //Signal
-                    iconsTupe(
-                      onTap: () => channelindex(),
-                      context: context,
-                      indexs: selectindex == 0,
-                      text: AppString.signal,
-                      trueicon: AppIcon.Singnal_true,
-                      falseicon: AppIcon.Signal_flase,
-                    ),
+                        //Signal
+                        iconsTupe(
+                          onTap: () => channelindex(),
+                          context: context,
+                          indexs: selectindex == 0,
+                          text: AppString.signal,
+                          trueicon: AppIcon.Singnal_true,
+                          falseicon: AppIcon.Signal_flase,
+                        ),
 
-                    //Watchlist
-                    iconsTupe(
-                      context: context,
-                      indexs: selectindex == 3,
-                      text: AppString.Watchlist,
-                      trueicon: AppIcon.watchlist_false,
-                      falseicon: AppIcon.watchlist_false,
-                    ),
+                        //Watchlist
+                        iconsTupe(
+                          context: context,
+                          indexs: selectindex == 3,
+                          text: AppString.Watchlist,
+                          trueicon: AppIcon.watchlist_false,
+                          falseicon: AppIcon.watchlist_false,
+                        ),
 
-                    //chart
-                    iconsTupe(
-                      onTap: () => messageindex(),
-                      context: context,
-                      indexs: selectindex == 1,
-                      text: AppString.Message,
-                      trueicon: AppIcon.chart_true,
-                      falseicon: AppIcon.chart_false,
-                    ),
+                        //chart
+                        iconsTupe(
+                          onTap: () => messageindex(),
+                          context: context,
+                          indexs: selectindex == 1,
+                          text: AppString.Message,
+                          trueicon: AppIcon.chart_true,
+                          falseicon: AppIcon.chart_false,
+                        ),
 
-                    //singnal
-                    iconsTupe(
-                      onTap: () => membarsindex(),
-                      context: context,
-                      indexs: selectindex == 2,
-                      text: AppString.Members,
-                      trueicon: AppIcon.account_true,
-                      falseicon: AppIcon.Account_flase,
+                        //singnal
+                        iconsTupe(
+                          onTap: () => membarsindex(),
+                          context: context,
+                          indexs: selectindex == 2,
+                          text: AppString.Members,
+                          trueicon: AppIcon.account_true,
+                          falseicon: AppIcon.Account_flase,
+                        ),
+                      ],
                     ),
+                    SizedBox(height: size.height / 100),
                   ],
                 ),
               ),

@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, non_constant_identifier_names, deprecated_member_use, unnecessary_null_comparison
+// ignore_for_file: sort_child_properties_last, non_constant_identifier_names, deprecated_member_use, unnecessary_null_comparison, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,7 +25,7 @@ Widget SelectedDropdown({
       GestureDetector(
         onTap: onTap,
         child: Container(
-          height: size.height / 16.5, width: size.width,
+          padding: EdgeInsets.symmetric(vertical: 15),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(size.width / 30), border: Border.all(color: AppColor.textfield_color_2)),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width / 20),

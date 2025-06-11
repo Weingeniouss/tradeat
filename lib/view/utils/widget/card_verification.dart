@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tradeat/view/utils/widget/profile_container.dart';
 import '../app_color.dart';
 import '../app_gif.dart';
 import '../app_icon.dart';
@@ -9,7 +10,6 @@ import '../app_string.dart';
 import '../responsive.dart';
 import 'app_size.dart';
 import 'button.dart';
-import 'horizontal_padding.dart';
 import 'inputfield.dart';
 
 class CardVerification extends StatefulWidget {
@@ -91,24 +91,14 @@ class _CardVerificationState extends State<CardVerification> {
       children: [
         GestureDetector(
           onTap: () => pancard(),
-          child: AnimatedContainer(
-            duration: Duration(seconds: 1),
-            height: (pancards)
-                ? (pancards_otp)
-                ? size.height / 2.2
-                : size.height / 3
-                : size.height / 12,
-            width: size.width,
-            decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadius.circular(size.width / 25)),
+          child: AnimatedContainers(
+            context: context,
             child: SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
-              child: horizontalPadding(
-                context: context,
-                child: Column(
+              child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: size.height / 50),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -164,7 +154,6 @@ class _CardVerificationState extends State<CardVerification> {
                         child: (pancards)
                             ? Divider(color: AppColor.textfield_color_2)
                             : SizedBox()),
-                    SizedBox(height: size.height / 80),
                     AnimatedSwitcher(
                       duration: Duration(seconds: 1),
                       child: (pancards)
@@ -226,7 +215,6 @@ class _CardVerificationState extends State<CardVerification> {
                     ),
                   ],
                 ),
-              ),
             ),
           ),
         ),

@@ -22,4 +22,8 @@ class AppColor {
 
   static Color yellow_color = Color(0xffFFD950);
   static Color orange_color = Color(0xffE78932);
+
+  static Color Lred_color = Color(0xffFE0000);
+  static Color Lyellow_color = Color(0xffFED800);
+  static Color Lgreen_color = Color(0xff2C992E);
 }

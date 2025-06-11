@@ -96,13 +96,9 @@ class ChannelPlan extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: size.height / 50),
-                  AnimatedContainer(
-                    decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadiusDirectional.circular(size.width / 25)),
-                    height: state.isToggled ? size.height / 1.5 : size.height / 1.85,
-                    duration: Duration(milliseconds: 500),
-                    child: horizontalPadding(
-                      context: context,
-                      child: SingleChildScrollView(
+                  AnimatedContainers(
+                    context: context,
+                    child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -214,7 +210,11 @@ class ChannelPlan extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: size.height / 50),
-                            (state.isToggled) ? SelectedDropdown(
+                            AnimatedSize(
+                              curve: Curves.linear,
+                              alignment: Alignment.topCenter,
+                              duration: Duration(milliseconds: 300),
+                              child: (state.isToggled) ? SelectedDropdown(
                               onTap: () async {
                                 final selected2 = await showDialog<String>(
                                   context: context,
@@ -288,16 +288,16 @@ class ChannelPlan extends StatelessWidget {
                               condition: state.selectedDurationSecond != null,
                               heding: AppString.TrailPlanDays,
                             ) : SizedBox(),
+                            )
                           ],
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
       );},
     );
   }

@@ -11,6 +11,7 @@ import 'package:tradeat/view/utils/app_color.dart';
 import 'package:tradeat/view/utils/app_icon.dart';
 import 'package:tradeat/view/utils/app_string.dart';
 import 'package:tradeat/view/utils/widget/app_size.dart';
+import 'package:tradeat/view/utils/widget/profile_container.dart';
 import '../../../../controller/database/loacl_store/local.dart';
 import '../../../../controller/userInterface/creations/bloc/authentication/auth_mobile_number_bloc/Auth_mobile_number_bloc.dart';
 import '../../../../controller/userInterface/creations/event/authentication/auth_mobile_number_controller/auth_mobile_number__event.dart';
@@ -18,6 +19,7 @@ import '../../../../controller/userInterface/creations/state/authentication/auth
 import '../../../../modal/country_code.dart';
 import '../../../utils/responsive.dart';
 import '../../../utils/widget/GradientCheckbox.dart';
+import '../../../utils/widget/button.dart';
 import '../../../utils/widget/horizontal_padding.dart';
 
 class AuthMobileNumber extends StatefulWidget {
@@ -82,10 +84,10 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                         SizedBox(height: size.height / 15),
                         Row(
                           children: [
-                            Container(
-                              height: size.height / 14, width: size.width / 4,
-                              decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadiusDirectional.circular(size.width / 25)),
-                              child: Center(
+                            ProfileContainer(
+                              context: context,
+                              padding: EdgeInsets.all(20),
+                              Widget: Center(
                                 child: DropdownButton2<String>(
                                  isDense: true,
                                   iconStyleData: IconStyleData(icon: SvgPicture.asset(AppIcon.down)),
@@ -121,27 +123,27 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                                 }).toList())
                               )),
                             SizedBox(width: size.width / 30),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: size.width / 20),
-                              height: size.height / 14,
-                              width: size.width / 1.8,
-                              decoration: BoxDecoration(color: AppColor.textfield_color, borderRadius: BorderRadiusDirectional.circular(size.width / 25)),
-                              child: Center(
-                                child: TextField(
-                                  onChanged: (value) => bloc.add(MobileNumberChanged(value)),
-                                  focusNode: focusNode,
-                                  maxLength: maxLength,
-                                  maxLines: 1,
-                                  inputFormatters: [maskFormatter],
-                                  controller: mobile_number_controller,
-                                  cursorColor: AppColor.white_color,
-                                  keyboardType: TextInputType.phone,
-                                  style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value),
-                                  decoration: InputDecoration(
-                                    counterText: '',
-                                    disabledBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
+                            Expanded(
+                              child: ProfileContainer(
+                                context: context,
+                                padding: EdgeInsets.all(8),
+                                Widget: Center(
+                                  child: TextField(
+                                    onChanged: (value) => bloc.add(MobileNumberChanged(value)),
+                                    focusNode: focusNode,
+                                    maxLength: maxLength,
+                                    maxLines: 1,
+                                    inputFormatters: [maskFormatter],
+                                    controller: mobile_number_controller,
+                                    cursorColor: AppColor.white_color,
+                                    keyboardType: TextInputType.phone,
+                                    style: TextStyle(color: AppColor.white_color, fontSize: responsivetext.value),
+                                    decoration: InputDecoration(
+                                      counterText: '',
+                                      disabledBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -182,36 +184,7 @@ class _AuthMobileNumberState extends State<AuthMobileNumber> {
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => MobileOtp(number: rawNumber, countrycode: state.selectedDialCode)));
                                 }
                               },
-                              child: Container(
-                                height: size.height / 15,
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                  gradient: (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
-                                      ? LinearGradient(
-                                          colors: [
-                                            AppColor.yellow_color, AppColor.orange_color,
-                                          ],
-                                          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                                        )
-                                      : null,
-                                  color: AppColor.button_hide_color,
-                                  borderRadius: BorderRadiusDirectional.circular(size.width / 50),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    AppString.Continue,
-                                    style: TextStyle(
-                                      fontSize: size.width / 26,
-                                      color: (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
-                                          ? AppColor.button_text_color
-                                          : AppColor.gray_color,
-                                      fontWeight: (state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
-                                              ? FontWeight.w700
-                                              : FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                             child: Button(context: context,buttonname: AppString.Continue,buttoncondition: state.mobileNumber.isNotEmpty && state.isAccepted && mobile_number_controller.text.length == 12)
                           )
                         ],
                       ),
