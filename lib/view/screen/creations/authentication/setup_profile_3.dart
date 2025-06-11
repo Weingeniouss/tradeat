@@ -254,7 +254,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                               SizedBox(height: size.height / 80),
                                               Button(
                                                 onTap: () {
-                                                  showDialog(
+                                                  if(isFormValid()){
+                                                    showDialog(
                                                       context: context,
                                                       builder: (BuildContextcontext) {
                                                         Future.delayed(Duration(seconds: 2), () {
@@ -280,7 +281,8 @@ class _SetupProfile_thardState extends State<SetupProfile_thard> {
                                                           ),
                                                         );
                                                       });
-                                                      },
+                                                      }
+                                                  },
                                                 context: context,
                                                 buttonname: AppString.Save,
                                                 buttoncondition: isFormValid(),

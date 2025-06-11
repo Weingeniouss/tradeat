@@ -151,6 +151,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+
         //
         //**************************** User Interface *********************
         //
@@ -203,7 +204,7 @@ class MyApp extends StatelessWidget {
         ),
         theme: ThemeData(fontFamily: 'Poppins',dialogBackgroundColor: AppColor.textfield_color),
         debugShowCheckedModeBanner: false,
-        home: Logo(),
+        home: SetupProfile_thard(),
       ),
     );
   }
