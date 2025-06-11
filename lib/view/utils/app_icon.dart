@@ -19,6 +19,7 @@ class AppIcon {
   static const swich_true = 'asset/icon/swich_true.png';
   static const delet = 'asset/icon/delet.svg';
   static const edit = 'asset/icon/edit.svg';
+  static const line ='asset/icon/line.svg';
 
   //Togale Flotingbutton
   static const Equity = 'asset/icon/Equity.svg';
@@ -56,6 +57,7 @@ class AppIcon {
   static const noData = 'asset/icon/no_data.png';
   static const send = 'asset/icon/send.svg';
   static const search = 'asset/icon/search.svg';
+  static const watchlist = 'asset/icon/watchlist_true.svg';
 
   //Account
   static const logout = 'asset/icon/logout.svg';
@@ -65,6 +67,6 @@ class AppIcon {
   static const myHighlights = 'asset/icon/myHighlights.svg';
   static const myTradeATprofile = 'asset/icon/myTradeATprofile.svg';
   static const policies_agreements = 'asset/icon/policies_agreements.svg';
-  static const taxreport ='asset/icon/taxreport.svg';
+  static const taxreport = 'asset/icon/taxreport.svg';
   static const setting = 'asset/icon/settings.svg';
 }

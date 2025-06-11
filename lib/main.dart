@@ -183,8 +183,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => DurationCubit()),
 
         //Bottam Navigation
-        BlocProvider(create: (_) => NavigationBloc(), child: ChannaleNavigation(),
-       ),
+        BlocProvider(create: (_) => NavigationBloc(), child: ChannaleNavigation()),
+        BlocProvider(create: (_) => NavigationBloc(), child: DailyTrading_navigation()),
 
       ],
       child: GetMaterialApp(

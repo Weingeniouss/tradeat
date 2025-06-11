@@ -184,4 +184,9 @@ class AppString {
   static const hintTargetPrice2 = 'Enter Target Price 2';
   static const hintTargetPrice1 = 'Enter Target Price 1';
   static const hintSignalDetails = 'Enter Order Price';
+
+  //Watchlist
+  static const watchlist = 'Watchlist';
+  static const watchlist1 = 'Watchlist1';
+  static const watchlist2 = 'Watchlist2';
 }
